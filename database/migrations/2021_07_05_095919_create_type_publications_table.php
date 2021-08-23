@@ -15,7 +15,7 @@ class CreateTypePublicationsTable extends Migration
     {
         Schema::create('type_publications', function (Blueprint $table) {
             $table->id();
-            $table->string("nomPublication");
+            $table->string("nomPublication")->unique();
             $table->timestamps();
         });
     }
