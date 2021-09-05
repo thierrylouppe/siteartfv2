@@ -22,7 +22,7 @@ class FichierJointFactory extends Factory
     public function definition()
     {
         return [
-            "path" => $this->faker->file,
+            "path" => $this->faker->file(public_path('files/uploads/tmp'), public_path('files/uploads'), false),
         ];
     }
 }

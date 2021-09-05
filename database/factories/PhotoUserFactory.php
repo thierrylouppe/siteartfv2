@@ -22,7 +22,7 @@ class PhotoUserFactory extends Factory
     public function definition()
     {
         return [
-            "path" => $this->imageUrl(60, 60),
+            "path" => $this->faker->imageUrl(60, 60),
         ];
     }
 }

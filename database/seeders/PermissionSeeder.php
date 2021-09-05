@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PermissionSeeder extends Seeder
 {
@@ -16,7 +17,7 @@ class PermissionSeeder extends Seeder
         DB::table('permissions')->insert([
             ["nomPermission"=> "ajouter un article"],
             ["nomPermission"=> "consulter un article"],
-            ["nomPermission"=> "editer un article"]
+            ["nomPermission"=> "editer un article"],
 
             ["nomPermission"=> "ajouter une publication"],
             ["nomPermission"=> "consulter une publication"],

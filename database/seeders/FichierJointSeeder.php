@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class StatuArticleSeeder extends Seeder
+class FichierJointSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,8 @@ class StatuArticleSeeder extends Seeder
      */
     public function run()
     {
-        DB::table("statu_articles")->insert([
-            ["nomStatut"=>"En cours"],
-            ["nomStatut"=>"Terminée"]
+        DB::table("fichier_joints")->insert([
+            ["path"=> "reglementations/arretes/arrete.pdf"],
         ]);
     }
 }
