@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\FichierJoint;
+use App\Models\Publication;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class FichierJointFactory extends Factory
+class PublicationFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = FichierJoint::class;
+    protected $model = Publication::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,10 @@ class FichierJointFactory extends Factory
     public function definition()
     {
         return [
-            "path" => $this->faker->file(public_path('files/uploads/tmp'), public_path('files/uploads'), false),
+            "titre" => $this->faker->text($maxNbChars = 100),
+            "user_id" => rand(1, 5),
+            "type_publication_id" => rand(1, 5),
+            "fichier_joint_id" => rand(1, 3),
         ];
     }
 }

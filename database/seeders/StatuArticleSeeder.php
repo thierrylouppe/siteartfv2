@@ -15,7 +15,7 @@ class StatuArticleSeeder extends Seeder
     public function run()
     {
         DB::table("statu_articles")->insert([
-            ["nomStatut"=>"En cours"],
+            ["nomStatut"=>"enRedaction"],
             ["nomStatut"=>"Terminée"]
         ]);
     }

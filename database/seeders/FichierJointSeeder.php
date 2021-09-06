@@ -16,6 +16,8 @@ class FichierJointSeeder extends Seeder
     {
         DB::table("fichier_joints")->insert([
             ["path"=> "reglementations/arretes/arrete.pdf"],
+            ["path"=> "reglementations/decrets/decrets.pdf"],
+            ["path"=> "reglementations/etudes/etudes.pdf"],
         ]);
     }
 }

@@ -18,9 +18,9 @@ class CreateArticlesTable extends Migration
             $table->string("titre");
             $table->text("contenue");
             $table->string("slug");
-            //$table->foreignId('user_id')->constrained()->onDelete('cascade');
-            //$table->foreignId('image_article_id')->constrained()->onDelete('cascade');
-            //$table->foreignId('statu_article_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('image_article_id')->constrained()->onDelete('cascade');
+            $table->boolean('statu_article_id')->default(1)->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +32,11 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
+        // Schema::table('articles', function(Blueprint $table){
+        //     $table->dropForeign("user_id");
+        //     $table->dropForeign("image_article_id");
+        //     $table->dropForeign("statu_article_id");
+        // });
         Schema::dropIfExists('articles');
     }
 }
