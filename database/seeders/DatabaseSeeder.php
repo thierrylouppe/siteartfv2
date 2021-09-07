@@ -28,7 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(StatuArticleSeeder::class);
         $this->call(TypePublicationSeeder::class);
 
-        //FichierJoint::factory(10)->create();
         ImageArticle::factory(10)->create();
         Article::factory(10)->create();
         Publication::factory(10)->create();

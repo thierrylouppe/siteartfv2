@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class StatuArticle extends Model
 {
     use HasFactory;
+
+    public function article(){
+        return $this->hasMany(Article::class);
+    }
 }
