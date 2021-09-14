@@ -56489,3 +56489,13 @@ a.text-muted:hover {
   color: #3f474e;
 }
 
+.login-box{
+    transform: translateY(-100px);
+    min-width: 700px;
+}
+
+.ellipsis{
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+}
