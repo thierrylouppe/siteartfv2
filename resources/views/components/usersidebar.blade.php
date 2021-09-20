@@ -7,13 +7,10 @@
                   <img class="profile-user-img img-fluid img-circle" src="{{asset('images/user.png')}}" alt="User profile picture">
                 </div>
 
-                <h3 class="text-center profile-username ellipsis">{{ auth()->user()->prenom }} {{ auth()->user()->nom }}</h3>
+                <h3 class="text-center profile-username ellipsis">{{ userFullName() }}</h3>
 
                 <p class="text-center text-muted">
-                @foreach(auth()->user()->roles as $role)
-                    {{ \Illuminate\Support\Str::ucfirst($role->nom) }}
-                    ,
-                @endforeach
+                {{ getRolesName() }} 
                 </p>
 
                 <ul class="mb-3 list-group bg-dark">

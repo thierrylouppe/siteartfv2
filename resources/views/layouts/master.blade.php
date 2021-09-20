@@ -353,7 +353,7 @@
               <img src="{{asset('images/user.png')}}" alt="User Avatar" class="mr-3 img-size-50 img-circle">
         </div>
         <div class="info">
-          <a href="#" class="d-block ellipsis">{{ \Illuminate\Support\Str::ucfirst(auth()->user()->prenom) }} {{ \Illuminate\Support\Str::ucfirst(auth()->user()->nom) }}</a>
+          <a href="#" class="d-block ellipsis">{{ \Illuminate\Support\Str::ucfirst(userFullName()) }}</a>
         </div>
       </div>
 

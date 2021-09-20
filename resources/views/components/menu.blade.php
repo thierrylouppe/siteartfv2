@@ -3,14 +3,16 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
            <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('home')}}" class="nav-link {{ setMenuActive('home') }}">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Accueil
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          
+          @can("admin")
+            <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -20,7 +22,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-chart-line"></i>
                   <p>Vue globale</p>
                 </a>
@@ -28,15 +30,13 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-swatchbook"></i>
-                  <p>Locations</p>
+                  <p>Articles</p>
                 </a>
               </li>
             </ul>
           </li>
 
-          <li
-            class="nav-item"
-          >
+          <li class="nav-item {{ setMenuClass("admin.habilitations.", 'menu-open') }}" >
             <a href="#" class="nav-link">
               <i class=" nav-icon fas fa-user-shield"></i>
               <p>
@@ -47,8 +47,8 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a
-                href="#"
-                class="nav-link"
+                href="{{ route("admin.habilitations.users.index")}}"
+                class="nav-link {{ setMenuClass("admin.habilitations.", 'active') }}"
                 >
                   <i class=" nav-icon fas fa-users-cog"></i>
                   <p>Utilisateurs</p>
@@ -62,8 +62,10 @@
               </li>
             </ul>
           </li>
-
-          <li class="nav-item">
+          @endcan
+          
+          @can("agent")
+            <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
               <p>
@@ -72,54 +74,34 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href="#" class="nav-link ">
-                  <i class="nav-icon far fa-circle"></i>
-                  <p>Type d'articles</p>
-                </a>
-              </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-list-ul"></i>
                   <p>Articles</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-sliders-h"></i>
-                  <p>Tarifications</p>
-                </a>
-              </li>
             </ul>
           </li>
 
-          <li class="nav-header">LOCATION</li>
-          <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Gestion des clients
-              </p>
-            </a>
-          </li>
+          <li class="nav-header">CHIFFRES CLES</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-exchange-alt"></i>
               <p>
-                Gestion des locations
+                Gest des chiffres clés
               </p>
             </a>
           </li>
 
-          <li class="nav-header">CAISSE</li>
+          <li class="nav-header">PUBLICATIONS</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-coins"></i>
               <p>
-                Gestion des paiements
+                Gest des publications
               </p>
             </a>
           </li>
-          
+          @endcan
         </ul>
       </nav>
