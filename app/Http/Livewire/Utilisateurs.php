@@ -14,6 +14,14 @@ class Utilisateurs extends Component
     
     public $isBtnAddClicked = false; 
 
+    public $newUser = []; 
+    public $rules = [
+        'newUser.nom' => 'required',
+        'newUser.prenom' => 'required',
+        'newUser.sexe' => 'required',
+        'newUser.email' => 'required|email',
+    ];
+
     public function render()
     {
         return view('livewire.utilisateurs.index', [
@@ -25,6 +33,16 @@ class Utilisateurs extends Component
 
 
     public function goToAddUser(){
-         $this->isBtnAddClicked = true;
+        $this->isBtnAddClicked = true;
+    }
+
+    public function goToListUser(){
+        $this->isBtnAddClicked = false;
+    }
+
+    //fonction pour ajout user
+    public function addUser(){
+        // Vérifier les information envoyées par le formulaire sont top
+        $this->validate(); 
     }
 }
