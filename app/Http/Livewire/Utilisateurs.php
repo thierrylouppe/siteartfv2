@@ -11,6 +11,8 @@ class Utilisateurs extends Component
     //Ajout de la trait pour la pagination
     use WithPagination;
     protected $paginationTheme = "bootstrap";
+    
+    public $isBtnAddClicked = false; 
 
     public function render()
     {
@@ -19,5 +21,10 @@ class Utilisateurs extends Component
         ])
                 ->extends("layouts.master")
                 ->section("contenu");
+    }
+
+
+    public function goToAddUser(){
+         $this->isBtnAddClicked = true;
     }
 }

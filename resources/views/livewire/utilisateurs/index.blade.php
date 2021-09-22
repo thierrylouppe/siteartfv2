@@ -1,12 +1,15 @@
 <div>
-    <div class="p-4 pt-5 row">
+    @if ($isBtnAddClicked)
+      <h1>th</h1>
+    @else
+     <div class="p-4 pt-5 row">
           <div class="col-12">
             <div class="card">
               <div class="card-header bg-primary d-flex align-items-center">
                 <h3 class="card-title flex-grow-1"><i class="fas fa-users fa-2x"></i>Listes des utilisateurs</h3>
 
                 <div class="card-tools d-flex align-items-center">
-                <a class="mr-4 text-white btn btn-link d-block"><i class="fas fa-user-plus"></i>Nouvel utilisateur</a>
+                <a class="mr-4 text-white btn btn-link d-block" wire:click.prevent='goToAddUser()'><i class="fas fa-user-plus"></i>Nouvel utilisateur</a>
                   <div class="input-group input-group-md" style="width: 250px;">
                     <input type="text" name="table_search" class="float-right form-control" placeholder="Search">
 
@@ -62,5 +65,6 @@
             </div>
             <!-- /.card -->
           </div>
-        </div>
+        </div>  
+    @endif
 </div>
