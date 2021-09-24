@@ -19,13 +19,13 @@ class Utilisateurs extends Component
         'newUser.nom' => 'required',
         'newUser.prenom' => 'required',
         'newUser.sexe' => 'required',
-        'newUser.email' => 'required|email',
+        'newUser.email' => 'required|email|unique:users,email',
     ];
 
     public function render()
     {
         return view('livewire.utilisateurs.index', [
-            "users" => User::paginate(5)
+            "users" => User::latest()->paginate(5) //latest() permet de recupe le dernier element ajouter
         ])
                 ->extends("layouts.master")
                 ->section("contenu");
@@ -43,6 +43,19 @@ class Utilisateurs extends Component
     //fonction pour ajout user
     public function addUser(){
         // Vérifier les information envoyées par le formulaire sont top
-        $this->validate(); 
+        $validationAttributes = $this->validate(); 
+
+        //Ajout du password par default
+        $validationAttributes["newUser"]["password"] = "password";
+        $validationAttributes["newUser"]["photo_user_id"] = "1";
+
+        // Ajouter un nouvel utilisateur 
+        User::create($validationAttributes["newUser"]);
+
+        //vider le tableau de valeurs
+        $this->newUser = []; 
+
+        //Envoi Event après insert de user
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Utilisateur créé avec succès!!!"]);
     }
 }

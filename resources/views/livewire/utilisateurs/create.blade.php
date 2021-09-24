@@ -1,4 +1,4 @@
-<div class="row p-4 pt-5">
+<div class="p-4 pt-5 row">
         <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title"><i class="fas fa-user-plus fa-2x"></i> Formulaire de création d'un nouvel utilisateur</h3>
@@ -63,3 +63,16 @@
               </form>
             </div>
       </div>
+
+<script>
+    window.addEventListener("showSuccessMessage", event=>{
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        toast:true,
+        title: event.detail.message || 'Opération effectuée avec succès !',
+        showConfirmButton: false,
+        timer: 3000
+      })
+    })
+</script>
