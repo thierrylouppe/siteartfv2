@@ -58,4 +58,22 @@ class Utilisateurs extends Component
         //Envoi Event après insert de user
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Utilisateur créé avec succès!!!"]);
     }
+
+    public function confirmDelete($name, $id){
+        $this->dispatchBrowserEvent("showConfirmMessage", ["message"=>[
+            "text" => "Vous êtes sur le point de supprimer $name de la liste des utilisateurs. Voulez-vous continuer?",
+            "title" => "Êtes-vous sûr de continuer",
+            "type" => "warning",
+            "data" => [
+                "user_id" => $id,
+            ]
+        ]]);
+    }
+
+    public function deleteUser($id){
+        User::destroy($id);
+        
+        //Envoi Event après delete de user
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Utilisateur supprimé avec succès!!!"]);
+    }
 }
