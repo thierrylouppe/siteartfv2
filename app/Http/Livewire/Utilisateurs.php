@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,15 +13,21 @@ class Utilisateurs extends Component
     use WithPagination;
     protected $paginationTheme = "bootstrap";
     
-    public $isBtnAddClicked = false; 
+    //public $isBtnAddClicked = false; 
+
+    //page current
+    public $currentPage = PAGELIST; 
+
 
     public $newUser = []; 
-    public $rules = [
-        'newUser.nom' => 'required',
-        'newUser.prenom' => 'required',
-        'newUser.sexe' => 'required',
-        'newUser.email' => 'required|email|unique:users,email',
-    ];
+    // public $rules = [
+    //     'newUser.nom' => 'required',
+    //     'newUser.prenom' => 'required',
+    //     'newUser.sexe' => 'required',
+    //     'newUser.email' => 'required|email|unique:users,email',
+    // ];
+
+    public $editUser = [];
 
     public function render()
     {
@@ -31,13 +38,41 @@ class Utilisateurs extends Component
                 ->section("contenu");
     }
 
-
+    //Fonction navigation des pages
     public function goToAddUser(){
-        $this->isBtnAddClicked = true;
+        //$this->isBtnAddClicked = true;
+        $this->currentPage = PAGECREATEFORM;
+    }
+
+    public function goToEditUser($id){
+        //$this->isBtnAddClicked = true;
+        $this->editUser = User::find($id)->toArray();
+        //dump($this->editUser);
+        $this->currentPage = PAGEEDITFORM;
     }
 
     public function goToListUser(){
-        $this->isBtnAddClicked = false;
+        //$this->isBtnAddClicked = false;
+        $this->currentPage = PAGELIST;
+        $this->editUser = [];
+    }
+
+    public function rules(){
+        if($this->currentPage == PAGEEDITFORM){
+            return [
+                'editUser.nom' => 'required',
+                'editUser.prenom' => 'required',
+                'editUser.sexe' => 'required',
+                'editUser.email' => ['required', 'email', Rule::unique("users", "email")->ignore($this->editUser['id'])],
+            ];
+        }
+
+        return [
+            'newUser.nom' => 'required',
+            'newUser.prenom' => 'required',
+            'newUser.sexe' => 'required',
+            'newUser.email' => 'required|email|unique:users,email',
+        ];
     }
 
     //fonction pour ajout user
@@ -57,6 +92,17 @@ class Utilisateurs extends Component
 
         //Envoi Event après insert de user
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Utilisateur créé avec succès!!!"]);
+    }
+
+    public function updateUser(){
+        // Vérifier les information envoyées par le formulaire sont top
+        $validationAttributes = $this->validate(); 
+        //dump($validationAttributes);
+        User::find($this->editUser["id"])->update($validationAttributes['editUser']);
+
+        //Envoi Event après update de user
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Utilisateur mis à jour avec succès!!!"]);
+
     }
 
     public function confirmDelete($name, $id){

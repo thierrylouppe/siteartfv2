@@ -1,6 +1,10 @@
 <?php
 use Illuminate\Support\Str;
 
+//const pour les pages 
+define("PAGELIST", "liste");
+define("PAGECREATEFORM", "create");
+define("PAGEEDITFORM", "edit");
 
 
 //recuperation du prenom et nom 
