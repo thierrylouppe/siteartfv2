@@ -63,7 +63,8 @@
           </div>
         </div>  
 
-<script>
+{{-- hold process actuellement centralisé sur la page index --}}
+{{-- <script>
     window.addEventListener("showConfirmMessage", event=>{
       Swal.fire({
           title: event.detail.message.title,
@@ -92,4 +93,4 @@
         timer: 3000
       })
     })
-</script>
+</script> --}}

@@ -5,6 +5,8 @@ use Illuminate\Support\Str;
 define("PAGELIST", "liste");
 define("PAGECREATEFORM", "create");
 define("PAGEEDITFORM", "edit");
+//constant pour réinitialisé le mot de passe 
+define("DEFAULTPASSWORD", "password");
 
 
 //recuperation du prenom et nom 

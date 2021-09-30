@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -103,6 +104,20 @@ class Utilisateurs extends Component
         //Envoi Event après update de user
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Utilisateur mis à jour avec succès!!!"]);
 
+    }
+
+    //Réinitialisation du mot de passe
+    public function confirmPwdReset(){
+        $this->dispatchBrowserEvent("showConfirmMessage", ["message"=>[
+            "text" => "Vous êtes sur le point de réinitialiser le mot de passe de cet utilisateur. Voulez-vous continuer?",
+            "title" => "Êtes-vous sûr de continuer",
+            "type" => "warning",
+        ]]);
+    }
+
+    public function resetPassword(){
+        User::find($this->editUser['id'])->update(["password" => Hash::make(DEFAULTPASSWORD)]);
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Mot de passe utilisateur réinitialisé avec succès!!!"]);
     }
 
     public function confirmDelete($name, $id){

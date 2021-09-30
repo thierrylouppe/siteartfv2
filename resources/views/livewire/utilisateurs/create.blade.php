@@ -64,7 +64,8 @@
             </div>
       </div>
 
-<script>
+{{-- hold process actuellement centralisé sur la page index --}}
+{{-- <script>
     window.addEventListener("showSuccessMessage", event=>{
       Swal.fire({
         position: 'top-end',
@@ -75,4 +76,4 @@
         timer: 3000
       })
     })
-</script>
+</script> --}}
