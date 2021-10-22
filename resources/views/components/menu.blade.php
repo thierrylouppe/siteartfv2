@@ -54,18 +54,12 @@
                   <p>Utilisateurs</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-fingerprint"></i>
-                  <p>Roles et permissions</p>
-                </a>
-              </li>
             </ul>
           </li>
           @endcan
           
           @can("agent")
-            <li class="nav-item">
+            <li class="nav-item {{ setMenuClass("admin.gestionarticles.", 'menu-open') }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
               <p>
@@ -75,7 +69,8 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" 
+                class="nav-link {{ setMenuClass("admin.gestionarticles.", 'active') }}">
                   <i class="nav-icon fas fa-list-ul"></i>
                   <p>Articles</p>
                 </a>

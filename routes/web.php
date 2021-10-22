@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Utilisateurs;
+use App\Http\Livewire\Articles;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,14 @@ Route::group([
     ], function(){
         // hold approch:Route::get("/utilisateurs", [UserController::class, "index"])->name('users.index');
         Route::get("/utilisateurs", Utilisateurs::class)->name('users.index');
+    });
+
+    Route::group([
+        "prefix" => "gestionarticles", 
+        'as' => 'gestionarticles.'
+    ], function(){
+        // hold approch:Route::get("/utilisateurs", [UserController::class, "index"])->name('users.index');
+        Route::get("/gestionarticles", Articles::class)->name('articles.index');
     });
 });
 
