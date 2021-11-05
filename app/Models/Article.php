@@ -9,12 +9,17 @@ class Article extends Model
 {
     use HasFactory;
 
-    public function imageArticle(){
-        return $this->hasOne(ImageArticle::class);
-    }
+    protected $fillable = [
+        'titre',
+        'contenue',
+        'slug',
+        'status',
+        'user_id',
+    ];
+    
 
-    public function statutarticle(){
-        return $this->belongsTo(StatuArticle::class);
+    public function imageArticle(){
+        return $this->belongsTo(ImageArticle::class);
     }
 
     public function user(){

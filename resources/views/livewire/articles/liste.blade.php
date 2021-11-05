@@ -2,11 +2,11 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header bg-primary d-flex align-items-center">
-                <h3 class="card-title flex-grow-1"><i class="fas fa-users fa-2x"></i>Listes des articles</h3>
+                <h3 class="card-title flex-grow-1"><i class="fas fa-newspaper fa-2x"></i> Listes des articles</h3>
 
                 <div class="card-tools d-flex align-items-center">
-                    <a class="mr-4 text-white btn btn-link d-block" wire:click.prevent='goToAddUser()'><i
-                            class="fas fa-user-plus"></i>Nouvel article</a>
+                    <a class="mr-4 text-white btn btn-link d-block" wire:click.prevent='goToAddArticle()'><i 
+                    class="far fa-file-alt"></i> Nouvel article</a>
                     <div class="input-group input-group-md" style="width: 250px;">
                         <input type="text" name="table_search" class="float-right form-control" placeholder="Search">
 
@@ -31,27 +31,33 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($articles as $article)
                             <tr>
-                                <td>Titre article</td>
-                                <td>Auteur article</td>
-                                <td>Statu article</td>
-                                <td class="text-center"><span class="tag tag-success">22/10/2021</span></td>
+                                <td>{{$article->titre}}</td>
+                                <td>{{$article->user->nom}}</td>
+                                @if ($article->status == 0)
+                                    <td><span class="badge bg-warning">En rédaction</span></td>
+                                @else
+                                    <td><span class="badge bg-success">En ligne</span></td>
+                                @endif
+                                <td class="text-center"><span class="tag tag-success">{{$article->created_at->diffForHumans()}}</span></td>
                                 <td class="text-center">
-                                    <button class="btn btn-link"><i class="far fa-edit"></i></button>
-                                    <button class="btn btn-link"><i class="fa fa-trash-alt"></i></button>
-                                    <button class="btn btn-link"><i class="fa fa-trash-alt"></i></button>
-                                    <button class="btn btn-link"><i class="fa fa-trash-alt"></i></button>
+                                    <button class="btn btn-link" title="Aperçu"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-link" title="Editer" wire:click='goToEditArticle({{$article->id}})'><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-link" title="Publier"><i class="fas fa-upload"></i></button>
+                                    <button class="btn btn-link" title="Supprimer"><i class="fas fa-trash-alt"></i></button>
                                 </td>
                             </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
             <!-- /.card-body -->
-            {{-- <div class="card-footer">
+            <div class="card-footer">
                 <div class="float-right">
-                    {{ $users->links() }}
+                    {{ $articles->links() }}
                 </div>
-            </div> --}}
+            </div>
             <!-- /.card-footer -->
         </div>
         <!-- /.card -->

@@ -38,7 +38,6 @@ Route::group([
         "prefix" => "gestionarticles", 
         'as' => 'gestionarticles.'
     ], function(){
-        // hold approch:Route::get("/utilisateurs", [UserController::class, "index"])->name('users.index');
         Route::get("/gestionarticles", Articles::class)->name('articles.index');
     });
 });

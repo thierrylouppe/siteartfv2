@@ -4,8 +4,11 @@ require('./bootstrap');
 window.Swal = require("sweetalert2");
 window.Daterange = require("daterangepicker");
 
-import "admin-lte/plugins/jquery/jquery";
+window.$ = window.jQuery = require("admin-lte/plugins/jquery/jquery");
 import "admin-lte/plugins/bootstrap/js/bootstrap.bundle";
 import "admin-lte/dist/js/adminlte";
+import "summernote/dist/summernote-bs4.js";
+
+
 
 

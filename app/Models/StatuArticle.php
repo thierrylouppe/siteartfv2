@@ -9,7 +9,15 @@ class StatuArticle extends Model
 {
     use HasFactory;
 
-    public function article(){
+    protected $fillable = [
+        'nomStatut',
+    ];
+
+    // public function article(){
+    //     return $this->hasMany(Article::class);
+    // }
+
+    public function articles(){
         return $this->hasMany(Article::class);
     }
 }

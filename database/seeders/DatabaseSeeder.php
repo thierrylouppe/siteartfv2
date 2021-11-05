@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         $this->call(FichierJointSeeder::class);
 
-        $this->call(StatuArticleSeeder::class);
         $this->call(TypePublicationSeeder::class);
 
         ImageArticle::factory(10)->create();

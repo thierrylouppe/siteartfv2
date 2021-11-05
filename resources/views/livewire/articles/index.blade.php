@@ -1,6 +1,21 @@
 <div wire:ignore.self>
-      @include("livewire.articles.liste")
+      @if ($currentPage == PAGELISTEARTICLE)
+        @include("livewire.articles.liste")
+      @endif
+
+      @if ($currentPage == PAGEEDITARTICLE)
+        @include("livewire.articles.edit")
+      @endif
+
+      @if ($currentPage == PAGECREATEARTICLE)
+        @include("livewire.articles.create")
+      @endif
+      
 </div>
+
+<script>
+  document.getElementById("summernote").summernote()
+</script>
 
 <script>
     window.addEventListener("showSuccessMessage", event=>{
@@ -37,4 +52,20 @@
           }
       })
     })
+</script>
+
+{{-- Script aperçu image avant enregistrement --}}
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#img-slider')
+                    .attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>

@@ -1,10 +1,16 @@
 <?php
 use Illuminate\Support\Str;
 
-//const pour les pages 
+//const pour les pages habilitations
 define("PAGELIST", "liste");
 define("PAGECREATEFORM", "create");
 define("PAGEEDITFORM", "edit");
+
+//const pour les pages articles
+define("PAGELISTEARTICLE", "listeArticle");
+define("PAGECREATEARTICLE", "createArticle");
+define("PAGEEDITARTICLE", "edit");
+
 //constant pour réinitialisé le mot de passe 
 define("DEFAULTPASSWORD", "password");
 
