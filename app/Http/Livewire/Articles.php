@@ -85,6 +85,29 @@ class Articles extends Component
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Article créé avec succès!!!"]);
     } 
 
+    public function confirmePublierArticle($id){
+        $this->dispatchBrowserEvent("showConfirmMessagePublier", ["message"=>[
+            "text" => "Vous êtes sur le point de publier cet article. Voulez-vous continuer?",
+            "title" => "Êtes-vous sûr de continuer",
+            "type" => "warning",
+            "data" => [
+                "article_id" => $id,
+            ]
+        ]]);
+    }
+
+    public function confirmeDepublierArticle($id){
+        $this->dispatchBrowserEvent("showConfirmMessageDepublier", ["message"=>[
+            "text" => "Vous êtes sur le point de dépublier cet article. Voulez-vous continuer?",
+            "title" => "Êtes-vous sûr de continuer",
+            "type" => "warning",
+            "data" => [
+                "article_id" => $id,
+            ]
+        ]]);
+    }
+
+
     public function publierArticle($id){
         $validationAttributes["newArticle"]["status"] = "1"; 
         Article::find($id)->update($validationAttributes['newArticle']);
@@ -99,6 +122,16 @@ class Articles extends Component
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Article dépublier avec succès!!!"]);
     }
 
+    public function confirmDeleteArticle($id){
+        $this->dispatchBrowserEvent("showConfirmMessageDelete", ["message"=>[
+            "text" => "Vous êtes sur le point de supprimer cet article. Voulez-vous continuer?",
+            "title" => "Êtes-vous sûr de continuer",
+            "type" => "warning",
+            "data" => [
+                "article_id" => $id,
+            ]
+        ]]);
+    }
 
     public function deleteArticle($id){
         Article::destroy($id);

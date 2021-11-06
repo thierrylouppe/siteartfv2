@@ -45,10 +45,10 @@
                                     <button class="btn btn-link" title="Aperçu"><i class="fas fa-eye"></i></button>
                                     <button class="btn btn-link" title="Editer" wire:click='goToEditArticle({{$article->id}})'><i class="fas fa-edit"></i></button>
                                     @if ($article->status == 0)
-                                        <button class="btn btn-link" title="Publier" wire:click='publierArticle({{$article->id}})'><i class="fas fa-upload"></i></button>
-                                        <button class="btn btn-link" title="Supprimer" wire:click='deleteArticle({{$article->id}})'><i class="fas fa-trash-alt"></i></button>
+                                        <button class="btn btn-link" title="Publier" wire:click.prevent='confirmePublierArticle({{$article->id}})'><i class="fas fa-arrow-up"></i></button>
+                                        <button class="btn btn-link" title="Supprimer" wire:click.prevent='confirmDeleteArticle({{$article->id}})'><i class="far fa-trash-alt"></i></button>
                                     @else
-                                        <button class="btn btn-link" title="Dépublier" wire:click='depublierArticle({{$article->id}})'><i class="fas fa-upload"></i>Déplubier</button>
+                                        <button class="btn btn-link" title="Dépublier" wire:click.prevent='confirmeDepublierArticle({{$article->id}})'><i class="fas fa-arrow-down"></i></button>
                                     @endif
                                 </td>
                             </tr>

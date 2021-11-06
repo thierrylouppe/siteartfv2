@@ -31,7 +31,7 @@
 </script>
 
 <script>
-    window.addEventListener("showConfirmMessage", event=>{
+    window.addEventListener("showConfirmMessageDelete", event=>{
       Swal.fire({
           title: event.detail.message.title,
           text: event.detail.message.text,
@@ -45,16 +45,58 @@
           if (result.isConfirmed) {
             if(event.detail.message.data){
               //Appel une fonction livewire
-              @this.deleteUser(event.detail.message.data.user_id)
-            }else{
-              @this.resetPassword()
+              @this.deleteArticle(event.detail.message.data.article_id)
             }
           }
       })
     })
 </script>
 
-{{-- Script aperçu image avant enregistrement --}}
+<script>
+    window.addEventListener("showConfirmMessagePublier", event=>{
+      Swal.fire({
+          title: event.detail.message.title,
+          text: event.detail.message.text,
+          icon: event.detail.message.type,
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Continuer',
+          cancelButtonText: 'Annuler',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            if(event.detail.message.data){
+              //Appel une fonction livewire
+              @this.publierArticle(event.detail.message.data.article_id)
+            }
+          }
+      })
+    })
+</script>
+
+<script>
+    window.addEventListener("showConfirmMessageDepublier", event=>{
+      Swal.fire({
+          title: event.detail.message.title,
+          text: event.detail.message.text,
+          icon: event.detail.message.type,
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Continuer',
+          cancelButtonText: 'Annuler',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            if(event.detail.message.data){
+              //Appel une fonction livewire
+              @this.depublierArticle(event.detail.message.data.article_id)
+            }
+          }
+      })
+    })
+</script>
+
+{{-- Script aperçu image avant enregistrement  --}}
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {
