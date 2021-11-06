@@ -44,8 +44,12 @@
                                 <td class="text-center">
                                     <button class="btn btn-link" title="Aperçu"><i class="fas fa-eye"></i></button>
                                     <button class="btn btn-link" title="Editer" wire:click='goToEditArticle({{$article->id}})'><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-link" title="Publier"><i class="fas fa-upload"></i></button>
-                                    <button class="btn btn-link" title="Supprimer"><i class="fas fa-trash-alt"></i></button>
+                                    @if ($article->status == 0)
+                                        <button class="btn btn-link" title="Publier" wire:click='publierArticle({{$article->id}})'><i class="fas fa-upload"></i></button>
+                                        <button class="btn btn-link" title="Supprimer" wire:click='deleteArticle({{$article->id}})'><i class="fas fa-trash-alt"></i></button>
+                                    @else
+                                        <button class="btn btn-link" title="Dépublier" wire:click='depublierArticle({{$article->id}})'><i class="fas fa-upload"></i>Déplubier</button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

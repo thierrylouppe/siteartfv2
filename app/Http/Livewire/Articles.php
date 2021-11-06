@@ -18,6 +18,7 @@ class Articles extends Component
 
     public $newArticle = [];
     public $editArticle = [];
+    public $publiArticle = [];
     public $rolePermissions = [];
     public $currentPage = PAGELISTEARTICLE;
 
@@ -54,6 +55,12 @@ class Articles extends Component
     }
 
     public function rules(){
+        if($this->currentPage == PAGELISTEARTICLE){
+            return [
+                'publiArticle.status' => 'required',
+            ];
+        }
+
         return [
             'newArticle.titre' =>  'required|max:255|unique:articles,titre,',
             'newArticle.contenue' => 'required',
@@ -77,4 +84,26 @@ class Articles extends Component
         //Envoi msg succès
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Article créé avec succès!!!"]);
     } 
+
+    public function publierArticle($id){
+        $validationAttributes["newArticle"]["status"] = "1"; 
+        Article::find($id)->update($validationAttributes['newArticle']);
+        //Envoi msg succès
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Article publier avec succès!!!"]);
+    }
+
+    public function depublierArticle($id){
+        $validationAttributes["newArticle"]["status"] = "0"; 
+        Article::find($id)->update($validationAttributes['newArticle']);
+        //Envoi msg succès
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Article dépublier avec succès!!!"]);
+    }
+
+
+    public function deleteArticle($id){
+        Article::destroy($id);
+
+        //Envoi msg succès
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Article supprimer avec succès!!!"]);
+    }
 }
