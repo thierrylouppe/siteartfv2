@@ -51,7 +51,7 @@
                                 <label for="text" class="col-sm-8 col-form-label">Selectionner l'état de votre
                                     article</label>
                                 <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" id="customCheckbox"
+                                    <input class="custom-control-input" type="checkbox" value="1" id="customCheckbox"
                                        wire:model='editArticle.status'  @if($editArticle['status']) checked @endif>
                                     @if ($editArticle['status'] == 1)
                                        <label for="customCheckbox" class="custom-control-label">En ligne</label> 

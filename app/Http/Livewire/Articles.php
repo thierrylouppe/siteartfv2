@@ -7,6 +7,7 @@ use App\Models\ImageArticle;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -48,16 +49,14 @@ class Articles extends Component
         $this->currentPage = PAGEEDITARTICLE;
     }
 
-    public function updateArticle(){
-        $validationAttributes = $this->validate(); 
-
-        dump($validationAttributes);
-    }
+    
 
     public function rules(){
-        if($this->currentPage == PAGELISTEARTICLE){
+        if($this->currentPage == PAGEEDITARTICLE){
             return [
-                'publiArticle.status' => 'required',
+                'editArticle.titre' =>  ['required', 'max:255', Rule::unique("articles", "titre")->ignore($this->editArticle['id'])],
+                'editArticle.contenue' => 'required',
+                'editArticle.status' => 'required'
             ];
         }
 
@@ -84,6 +83,19 @@ class Articles extends Component
         //Envoi msg succès
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Article créé avec succès!!!"]);
     } 
+
+    public function updateArticle(){
+        $userId = auth()->user()->id;
+        $validationAttributes = $this->validate(); 
+        $titreArticle = $validationAttributes["editArticle"]["titre"];
+        $slug = Str::slug($titreArticle, '-');
+        $validationAttributes["editArticle"]["slug"] = $slug;
+        $validationAttributes["editArticle"]["user_id"] = $userId;
+
+        //dump($validationAttributes);
+        Article::find($this->editArticle["id"])->update($validationAttributes['editArticle']);
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Article mis à jour avec succès!!!"]);
+    }
 
     public function confirmePublierArticle($id){
         $this->dispatchBrowserEvent("showConfirmMessagePublier", ["message"=>[
