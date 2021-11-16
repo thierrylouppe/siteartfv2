@@ -15,12 +15,8 @@ class Article extends Model
         'slug',
         'status',
         'user_id',
+        'image',
     ];
-    
-
-    public function imageArticle(){
-        return $this->belongsTo(ImageArticle::class);
-    }
 
     public function user(){
         return $this->belongsTo(User::class);

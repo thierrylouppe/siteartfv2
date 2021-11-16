@@ -26,7 +26,7 @@ class ArticleFactory extends Factory
             "contenue" => $this->faker->paragraph($nbSentences = 3, $variableNbSentences = true),
             "slug" => $this->faker->slug,
             'user_id'=> rand(1, 4),
-            //'image_article_id' => rand(1, 4),
+            'image' => $this->faker->imageUrl(640, 480),
             'status' => rand(0, 1),
         ];
     }

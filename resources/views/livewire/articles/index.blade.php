@@ -96,6 +96,31 @@
     })
 </script>
 
+<script>
+    window.addEventListener("showUploadImage", event=>{
+      Swal.fire({
+      title: 'Select image',
+      input: 'file',
+      inputAttributes: {
+        'accept': 'image/*',
+        'aria-label': 'Upload your profile picture'
+      }
+    })
+
+    if (input.files && input.files[0]) {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        Swal.fire({
+          title: 'Your uploaded picture',
+          imageUrl: e.target.result,
+          imageAlt: 'The uploaded picture'
+        })
+      }
+      reader.readAsDataURL(input.files[0])
+    }
+    })
+</script>
+
 {{-- Script aperçu image avant enregistrement  --}}
 <script>
     function readURL(input) {

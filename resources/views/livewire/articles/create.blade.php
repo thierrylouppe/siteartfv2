@@ -9,13 +9,13 @@
             <div class="card-body">
                 <div class="card-body pad">
                     <div class="form-group ">
-                        <label for="title" class="col-sm-3 col-form-label">Titre de l'actualité</label>
-                        <input type="text" wire:model='newArticle.titre' id="title" name="title"
-                            class="form-control @error('title') is-invalid @enderror" 
+                        <label for="titre" class="col-sm-3 col-form-label">Titre de l'actualité</label>
+                        <input type="text" wire:model='newArticle.titre' id="titre" name="titre"
+                            class="form-control @error('newArticle.titre') is-invalid @enderror" 
                             placeholder="Entrer le titre">
-                        @error('title')
+                        @error('newArticle.titre')
                             <div class="invalid-feedback">
-                                {{ $errors->first('title') }}
+                                {{ $errors->first('newArticle.titre') }}
                             </div>
                         @enderror
                     </div>
@@ -23,11 +23,11 @@
                     <div class="form-group ">
                         <label for="text" class="col-sm-3 col-form-label">Contenue de l'article</label>
                         <div class="mb-3">
-                            <textarea name="content" wire:model='newArticle.contenue' id="summernote" placeholder="Entrer le contenue" class="textarea @error('content') is-invalid @enderror"
+                            <textarea name="contenue" wire:model='newArticle.contenue' id="summernote" placeholder="Entrer le contenue" class="textarea @error('newArticle.contenue') is-invalid @enderror"
                                 style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                            @error('content')
+                            @error('newArticle.contenue')
                                 <div class="invalid-feedback">
-                                    {{ $errors->first('content') }}
+                                    {{ $errors->first('newArticle.contenue') }}
                                 </div>
                             @enderror
                         </div>
@@ -36,17 +36,16 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <label for="text" class="col-sm-8 col-form-label">Selectionner
+                                <label for="text" class="col-sm-12 col-form-label">Selectionner
                                     l'image du slider</label>
-                                <input type='file' name="imgslider" onchange="readURL(this);" />
-                                @error('imgslider')
-                                    <div class="invalid-feedback">
-                                        {{ $errors->first('imgslider') }}
-                                    </div>
-                                @enderror
+                                <input type='file' wire:model='image' name="image" />
+                                @if ($image)
+                                    <img  id="image{{$inputFileIterator}}" src="{{ $image->temporaryUrl() }}" alt="votre image"
+                                style="width: 150px; height: 100px; margin: 10px 0px 10px 0px;" />
+                                @endif
+                                <span class='text-danger'>@error('image'){{ $message }}@enderror</span>
+                                
                             </div>
-                            <img id="img-slider" src="http://via.placeholder.com/5000x1000" alt="your image"
-                                style="width: 150px; height: 100px;" />
                         </div>
                     </div>
                 </div>
