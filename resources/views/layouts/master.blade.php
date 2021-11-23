@@ -97,12 +97,6 @@
             timer: 5000
         })
         });
-
-        window.addEventListener('#reservationdate', event=>{
-        Daterange.datetimepicker({
-            format: 'L'
-        })
-        });
     </script>
     
 
