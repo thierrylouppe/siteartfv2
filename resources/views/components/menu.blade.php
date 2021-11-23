@@ -54,18 +54,12 @@
                   <p>Utilisateurs</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-fingerprint"></i>
-                  <p>Roles et permissions</p>
-                </a>
-              </li>
             </ul>
           </li>
           @endcan
           
           @can("agent")
-            <li class="nav-item">
+            <li class="nav-item {{ setMenuClass("admin.gestionarticles.", 'menu-open') }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
               <p>
@@ -75,8 +69,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-list-ul"></i>
+                <a href="{{ route("admin.gestionarticles.articles.index")}}" 
+                class="nav-link {{ setMenuClass("admin.gestionarticles.", 'active') }}">
+                  <i class="nav-icon fas fa-newspaper"></i>
                   <p>Articles</p>
                 </a>
               </li>
@@ -94,8 +89,8 @@
           </li>
 
           <li class="nav-header">PUBLICATIONS</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item {{ setMenuClass("admin.gestionpublications.", 'menu-open') }}">
+            <a href="{{ route("admin.gestionpublications.publications.index")}}" class="nav-link {{ setMenuClass("admin.gestionpublications.", 'active') }}">
               <i class="nav-icon fas fa-coins"></i>
               <p>
                 Gest des publications

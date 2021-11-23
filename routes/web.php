@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Utilisateurs;
+use App\Http\Livewire\Articles;
+use App\Http\Livewire\Publications\Creates;
+use App\Http\Livewire\Publications\Listes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +34,21 @@ Route::group([
     ], function(){
         // hold approch:Route::get("/utilisateurs", [UserController::class, "index"])->name('users.index');
         Route::get("/utilisateurs", Utilisateurs::class)->name('users.index');
+    });
+
+    Route::group([
+        "prefix" => "gestionarticles", 
+        'as' => 'gestionarticles.'
+    ], function(){
+        Route::get("/gestionarticles", Articles::class)->name('articles.index');
+    });
+
+    Route::group([
+        "prefix" => "gestionpublications", 
+        'as' => 'gestionpublications.'
+    ], function(){
+        Route::get("/liste-publications", Listes::class)->name('publications.index');
+        Route::get("/creation-publications", Creates::class)->name('publications.create');
     });
 });
 

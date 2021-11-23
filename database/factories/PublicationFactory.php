@@ -24,8 +24,9 @@ class PublicationFactory extends Factory
         return [
             "titre" => $this->faker->text($maxNbChars = 100),
             "user_id" => rand(1, 5),
-            "type_publication_id" => rand(1, 5),
-            "fichier_joint_id" => rand(1, 3),
+            "typepublication" => "etude",
+            'status' => rand(0, 1),
+            "pathfichier" => "reglementations/arretes/arrete.pdf",
         ];
     }
 }
