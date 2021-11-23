@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label for="text" class="col-sm-12 col-form-label">Selectionner
                                     l'image du slider</label>
-                                <input type='file' wire:model='image' name="image" />
+                                <input type='file' wire:model='image' name="image" id="ee{{$inputFileIterator}}"/>
                                 @if ($image)
                                     <img  id="image{{$inputFileIterator}}" src="{{ $image->temporaryUrl() }}" alt="votre image"
                                 style="width: 150px; height: 100px; margin: 10px 0px 10px 0px;" />
@@ -57,7 +57,6 @@
             </div>
         </form>
     </div>
-
 </div>
 
 

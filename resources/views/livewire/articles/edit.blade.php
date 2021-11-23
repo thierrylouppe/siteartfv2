@@ -64,30 +64,30 @@
     <div class='col-md-4'>
         <div class="card card-primary">
             <div class="card-header">
-            <h3 class="card-title"><i class="fas fa-newspaper fa-2x"></i> Changer l'image de l'article</h3>
+            <h3 class="card-title"><i class="far fa-image fa-2x"></i> Changer l'image de l'article</h3>
             </div>
             <div class="pb-1 card-body">
                 <div class="row">
                     <form role="form" wire:submit.prevent='addArticle()' class="">
                         @csrf
                         <div class="form-group row-sm-18">
-                            <label for="text" class="col-form-label">Selectionner l'image</label>
-                            <input type='file' wire:model='image' name="image" />
-                            <span class='text-danger'>@error('image'){{ $message }}@enderror</span>
+                            <label for="image" class="col-form-label">Selectionner l'image</label>
+                            <input type='file' wire:model='imageEdit' name="image" id="image{{$inputFileIterator}}" />
+                            <span class='text-danger'>@error('imageEdit'){{ $message }}@enderror</span>
                         </div>
                     </form>
                 </div>
             </div>
             <!-- /.card-body -->
             <div class="p-1 card-footer">
-                <button type="submit" class="btn btn-primary">Changer l'image de l'article</button>
+                <button type="submit" wire:click.prevent="updateImage({{$idArticle}})" class="btn btn-primary">Changer l'image de l'article</button>
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="text" class=" col-form-label">Apeçu de l'image</label>
-            @if ($image)
-                <img  id="image{{$inputFileIterator}}" src="{{ $image->temporaryUrl() }}" alt="votre image"
+        <div class="form-group" style="width: 300px; height: 200px; margin: 5px 0px 5px 0px;">
+            <label class=" col-form-label">Apeçu de l'image</label>
+            @if ($imageEdit)
+                <img  src="{{ $imageEdit->temporaryUrl() }}" alt="votre image"
                 style="width: 150px; height: 100px; margin: 5px 0px 5px 0px;" />
             @else
                 <img id="img-slider" src="{{ asset('storage/'.$editArticle['image']) }}" alt="your image"

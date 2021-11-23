@@ -21,21 +21,35 @@ class Articles extends Component
 
     protected $paginationTheme = "bootstrap";
 
+
+    public $idArticle;
     public $newArticle = [];
     public $editArticle = [];
     public $publiArticle = [];
     public $rolePermissions = [];
     public $currentPage = PAGELISTEARTICLE;
     public $image = null; 
-    public $newImage = null; 
+    public $imageEdit = null; 
     public $inputFileIterator = 0;
+    public $search = "", $filtreType = "", $filtreEtat = "";
 
 
     public function render()
     {
         Carbon::setLocale("fr");
+
+        $articleQuery = Article::query();
+
+        if($this->search != ""){
+            $articleQuery->where('titre', "LIKE", "%". $this->search ."%");
+        }
+
+        if($this->filtreEtat != ""){
+            $articleQuery->where('status', $this->filtreEtat);
+        }
+
         return view('livewire.articles.index', [
-            "articles" => Article::with('user')->latest()->paginate(5)
+            "articles" => $articleQuery->latest()->paginate(5)
         ])
         ->extends("layouts.master")
         ->section("contenu");
@@ -45,18 +59,22 @@ class Articles extends Component
         $this->resetValidation();
         $this->newArticle = [];
         $this->image = null;
-        $this->inputFileIterator++;
         $this->currentPage = PAGECREATEARTICLE;
     }
 
     public function goToListArticle(){
         $this->currentPage = PAGELISTEARTICLE;
         $this->editArticle = [];
+        $this->inputFileIterator++;
     }
 
     public function goToEditArticle($idArticle){
-        $this->editArticle = Article::with('user')->find($idArticle)->toArray();
+        $article = Article::where('id', $idArticle)->first();
+        $this->editArticle = Article::find($idArticle)->toArray();
+        $this->idArticle = $article->id;
+        // dump($this->idArticle);
         $this->currentPage = PAGEEDITARTICLE;
+        $this->inputFileIterator++;
     }
 
     public function editImage(){
@@ -78,6 +96,7 @@ class Articles extends Component
         //Envoi msg succès
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Article publier avec succès!!!"]);
     }
+
     public function confirmeEditImage($id){
         $this->dispatchBrowserEvent("showConfirmMessageDepublier", ["message"=>[
             "text" => "Vous êtes sur le point de modifier l'image cet article. Voulez-vous continuer?",
@@ -93,7 +112,7 @@ class Articles extends Component
         $validateArr = [
             'newArticle.titre' =>  'required|max:255|unique:articles,titre,',
             'newArticle.contenue' => 'required',
-            'image' => "required"
+            'image' => "required|image"
         ];
 
         $userId = auth()->user()->id;
@@ -117,6 +136,7 @@ class Articles extends Component
         ]);
         //Vider les champs 
         $this->newArticle = []; 
+        $this->inputFileIterator++;
         //Envoi msg succès
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Article créé avec succès!!!"]);
     } 
@@ -141,6 +161,37 @@ class Articles extends Component
             "user_id" => $validatedData["editArticle"]["user_id"] = $userId,
         ]);
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Article mis à jour avec succès!!!"]);
+    }
+
+    public function updateImage($id)
+    {
+        $validateArr = [
+            'imageEdit' =>  'required',
+        ];
+
+        $this->validate($validateArr);
+        $imagePath = ""; 
+
+        if($this->imageEdit != null){
+            $imagePath = $this->imageEdit->store('upload', 'public');
+        }
+
+        $oldImage = Article::find($id)->image; 
+        
+        $oldEmplacementImageExists = Storage::disk()->exists('public/' . $oldImage);
+         
+        if ($oldImage == $this->image and $oldEmplacementImageExists ) {
+            Storage::disk()->delete('public/' . $oldImage);
+        }
+
+        Article::find($id)->update([
+            "image" => $imagePath
+        ]);
+
+        $this->inputFileIterator++;
+        $this->imageEdit = null;
+
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Image mise à jour avec succès!!!"]);
     }
 
     public function confirmePublierArticle($id){
@@ -214,7 +265,7 @@ class Articles extends Component
 
             if(! $storage->exists($pathFileName)) continue;
 
-            $fiveSecondsDelete = now()->subSeconds(5)->timestamp;
+            $fiveSecondsDelete = now()->subSeconds(3)->timestamp;
 
             if($fiveSecondsDelete > $storage->lastModified($pathFileName)){
                 $storage->delete($pathFileName);

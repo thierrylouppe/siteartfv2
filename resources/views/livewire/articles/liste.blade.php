@@ -7,18 +7,48 @@
                 <div class="card-tools d-flex align-items-center">
                     <a class="mr-4 text-white btn btn-link d-block" wire:click.prevent='goToAddArticle()'><i 
                     class="far fa-file-alt"></i> Nouvel article</a>
-                    <div class="input-group input-group-md" style="width: 250px;">
-                        <input type="text" name="table_search" class="float-right form-control" placeholder="Search">
-
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <!-- /.card-header -->
+            {{-- pour recherche --}}
+                <div class="p-2 bg-primary" style="height:85px;">
+                    <div class="row" >
+                        <div class="col-md-12 ">
+                            <div class="row" >
+                                <div class="col-5" >
+                                    <div class="form-group" >
+                                        <label for="recherche">Recherche:</label>
+                                        <input id="recherche" type="text" wire:model.debounce.200ms="search" name="table_search" class="float-right form-control" placeholder="Recherche">
+                                    </div>
+                                </div>
+                                <div class="col-4" >
+                                    {{-- <div class="form-group" >
+                                        <label for="filtreType">Filtrer par publication</label>
+                                        <select id="filtreType" wire:model="filtreType" class="form-control">
+                                            <option value="">Choisir le type de la publication</option>
+                                            <option value="avis">Avis</option>
+                                            <option value="bulletinsduregulateur">Bulletins du régulateur</option>
+                                            <option value="etude">Etudes</option>
+                                            <option value="seriestatistique">Séries statistiques</option>
+                                        </select>
+                                    </div> --}}
+                                </div>
+                                <div class="col-3" >
+                                    <div class="form-group" >
+                                        <label for="filtreEtat">Filtrer par état</label>
+                                        <select id="filtreEtat" wire:model="filtreEtat" class="form-control">
+                                            <option value="">Choisir l'état</option>
+                                            <option value="1">En ligne</option>
+                                            <option value="0">En redaction</option>
+                                        </select>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>          
+                </div>
             <div class="p-0 card-body table-responsive table-striped" style="height: 300px;">
                 <table class="table table-head-fixed">
                     <thead>

@@ -89,8 +89,8 @@
           </li>
 
           <li class="nav-header">PUBLICATIONS</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item {{ setMenuClass("admin.gestionpublications.", 'menu-open') }}">
+            <a href="{{ route("admin.gestionpublications.publications.index")}}" class="nav-link {{ setMenuClass("admin.gestionpublications.", 'active') }}">
               <i class="nav-icon fas fa-coins"></i>
               <p>
                 Gest des publications

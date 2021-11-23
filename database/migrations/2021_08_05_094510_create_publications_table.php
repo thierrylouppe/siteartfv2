@@ -16,9 +16,10 @@ class CreatePublicationsTable extends Migration
         Schema::create('publications', function (Blueprint $table) {
             $table->id();
             $table->string("titre");
+            $table->string("typepublication");
+            $table->string("pathfichier");
+            $table->integer('status')->default("0");
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('type_publication_id')->constrained()->onDelete('cascade');
-            $table->foreignId('fichier_joint_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
