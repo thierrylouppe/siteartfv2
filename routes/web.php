@@ -5,6 +5,7 @@ use App\Http\Livewire\Utilisateurs;
 use App\Http\Livewire\Articles;
 use App\Http\Livewire\Publications\Creates;
 use App\Http\Livewire\Publications\Listes;
+use App\Http\Livewire\Publications\Show;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,7 @@ Route::group([
         'as' => 'gestionarticles.'
     ], function(){
         Route::get("/gestionarticles", Articles::class)->name('articles.index');
+        Route::get("/aperçu/{slug}", Show::class)->name('articles.show');
     });
 
     Route::group([

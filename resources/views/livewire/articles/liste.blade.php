@@ -72,7 +72,7 @@
                                 @endif
                                 <td class="text-center"><span class="tag tag-success">{{$article->created_at->diffForHumans()}}</span></td>
                                 <td class="text-center">
-                                    <button class="btn btn-link" title="Aperçu"><i class="fas fa-eye"></i></button>
+                                    <a href="{{ route('admin.gestionarticles.articles.show', $article->slug) }}" title="Aperçu" class="btn btn-link"><i class="fas fa-eye"></i></a>
                                     
                                     @if ($article->status == 0)
                                         <button class="btn btn-link" title="Editer" wire:click.prevent='goToEditArticle({{$article->id}})'><i class="fas fa-edit"></i></button>
