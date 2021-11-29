@@ -9,17 +9,20 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Intervention\Image\Facades\Image;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Illuminate\Pagination\Paginator;
+Paginator::useBootstrap();
 
 class Articles extends Component
 {
     //Trait pour la pagination
-    use WithPagination;
+    // use WithPagination;
     use WithFileUploads; 
 
-    protected $paginationTheme = "bootstrap";
+    // protected $paginationTheme = "bootstrap";
 
 
     public $idArticle;
@@ -117,10 +120,43 @@ class Articles extends Component
 
         $userId = auth()->user()->id;
         $validatedData = $this->validate($validateArr); 
-        $imagePath = ""; 
+        $image_name = ""; 
 
         if($this->image != null){
-            $imagePath = $this->image->store('upload', 'public');
+            $image_file = $this->image->store('temp_images');
+            //dump($image_file);
+
+            $image_name = time() . '.' . $this->image->getClientOriginalExtension();
+            //dump($image_name);
+            $source = storage_path() . "/app/" . $image_file;
+            // dump($source);
+            $image = Image::make($source);
+            $height = $image->height();
+            $width = $image->width();
+
+            if ($height >= 500 && $width >= 500) {
+                $pathOne = storage_path('app/public/images/sliders/');
+                $pathTwo = storage_path('app/public/images/covers/');
+
+                if (!file_exists($pathOne)) {
+                    mkdir($pathOne, 0777, true);
+                }
+
+                if (!file_exists($pathTwo)) {
+                    mkdir($pathTwo, 0777, true);
+                }
+
+                //resize image slider
+                $image->resize(2300, 1000)->save($pathOne . $image_name);
+                //resize image cover
+                $image->resize(550, 412)->save($pathTwo . $image_name);
+
+                Storage::delete($image_file);
+            } else {
+                return redirect()->route("admin.gestionarticles.articles.index")->$this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Votre image est inférieure de 500 x 500!"]);
+            }
+            // $image = Image::make(public_path("storage/".$imagePath))->fit(200, 200);
+            // $image->save();
         }
 
         //Création d'un nouvel article
@@ -132,7 +168,7 @@ class Articles extends Component
             "slug" => $validatedData["newArticle"]["slug"] = $slug,
             "status" => $validatedData["newArticle"]["status"] = "0",
             "user_id" => $validatedData["newArticle"]["user_id"] = $userId,
-            "image" => $imagePath,
+            "image" => $image_name,
         ]);
         //Vider les champs 
         $this->newArticle = []; 
@@ -140,6 +176,7 @@ class Articles extends Component
         //Envoi msg succès
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Article créé avec succès!!!"]);
     } 
+    
 
     public function updateArticle(){
         $validateArr = [
@@ -247,9 +284,10 @@ class Articles extends Component
     public function deleteArticle($id){
         $imagePath = Article::find($id)->image; 
         
-        $oldemplacementimageexists = Storage::disk()->exists('public/' . $imagePath);
+        $oldemplacementimageexists = Storage::disk()->exists('public/images/sliders/' . $imagePath);
         if($oldemplacementimageexists){
-            Storage::disk()->delete('public/' . $imagePath);
+            Storage::disk()->delete('public/images/sliders/' . $imagePath);
+            Storage::disk()->delete('public/images/covers/' . $imagePath);
         }
 
         Article::destroy($id);

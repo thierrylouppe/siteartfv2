@@ -62,4 +62,11 @@ function setMenuActive($route){
     return "";
 }
 
+//remove operateur sur les chiffres cles
+
+function remove_operateur($text)
+{
+    return str_replace(["+", "-"], "", $text);
+} 
+
 

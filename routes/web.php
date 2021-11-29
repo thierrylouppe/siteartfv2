@@ -3,6 +3,8 @@
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Utilisateurs;
 use App\Http\Livewire\Articles;
+use App\Http\Livewire\Chiffrecles\Creates as ChiffreclesCreates;
+use App\Http\Livewire\Chiffrecles\Listes as ChiffreclesListes;
 use App\Http\Livewire\Publications\Creates;
 use App\Http\Livewire\Publications\Listes;
 use App\Http\Livewire\Publications\Show;
@@ -51,6 +53,14 @@ Route::group([
     ], function(){
         Route::get("/liste-publications", Listes::class)->name('publications.index');
         Route::get("/creation-publications", Creates::class)->name('publications.create');
+    });
+
+    Route::group([
+        "prefix" => "gestionchiffrecles", 
+        'as' => 'gestionchiffrecles.'
+    ], function(){
+        Route::get("/liste-chiffrecles", ChiffreclesListes::class)->name('chiffrecles.index');
+        Route::get("/creation-chiffrecles", ChiffreclesCreates::class)->name('chiffrecles.create');
     });
 });
 

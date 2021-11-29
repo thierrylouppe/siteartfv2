@@ -10,12 +10,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
-use Livewire\WithPagination;
+
+use Illuminate\Pagination\Paginator;
+Paginator::useBootstrap();
 
 class Utilisateurs extends Component
 {
-    //Ajout de la trait pour la pagination
-    use WithPagination;
+    
     protected $paginationTheme = "bootstrap";
     
     //public $isBtnAddClicked = false; 

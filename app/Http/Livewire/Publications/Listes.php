@@ -8,14 +8,15 @@ use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Livewire\WithPagination;
+// use Livewire\WithPagination;
+use Illuminate\Pagination\Paginator;
+Paginator::useBootstrap();
 
 class Listes extends Component
 {
-    use WithPagination;
     use WithFileUploads;
     public $idPublication; 
-    public $editPublication = []; 
+    public $titre, $typepublication, $status; 
     public $fichier = null;
     public $fichierEdit = null;
     public $showModifierFichier = 0;
@@ -52,7 +53,7 @@ class Listes extends Component
         ->section("contenu"); 
     }
 
-    public function edit($id)
+    public function edit($id) 
     {
         $publication = Publication::where('id', $id)->first();
         $this->idPublication = $publication->id;
@@ -72,7 +73,6 @@ class Listes extends Component
             'typepublication' => 'required',
             'fichier' =>  'required',
             'status' =>  'required',
-            'user_id' =>  'required',
         ]);
         
         $publication = Publication::find($id);
@@ -83,6 +83,7 @@ class Listes extends Component
         // $fichierPath = "";
         
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Publication mise à jour avec succès!!!"]);
+        return redirect()->route("admin.gestionpublications.publications.index");
     }
     public function updateFichier($id)
     {

@@ -80,7 +80,7 @@
 
           <li class="nav-header">CHIFFRES CLES</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route("admin.gestionchiffrecles.chiffrecles.index")}}" class="nav-link {{ setMenuClass("admin.gestionchiffrecles.", 'active') }}">
               <i class="nav-icon fas fa-exchange-alt"></i>
               <p>
                 Gest des chiffres clés
@@ -89,7 +89,7 @@
           </li>
 
           <li class="nav-header">PUBLICATIONS</li>
-          <li class="nav-item {{ setMenuClass("admin.gestionpublications.", 'menu-open') }}">
+          <li class="nav-item">
             <a href="{{ route("admin.gestionpublications.publications.index")}}" class="nav-link {{ setMenuClass("admin.gestionpublications.", 'active') }}">
               <i class="nav-icon fas fa-coins"></i>
               <p>

@@ -1,6 +1,6 @@
 <div>
     <!-- Modale pour changer l'image de l'article -->
-    <div wire:ignore.self class="modal fade" id="modal-info">
+    <div wire:ignore.self class="modal fade" id="modal-info" data-backdrop="static">
         <div class="modal-dialog modal-lg">
             <div class="modal-content bg-info">
                 <div class="modal-header">
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary" wire:click.prevent="update({{$idPublication}})">Mise à jour</button>
+                        <button type="submit" class="btn btn-primary" wire:click.prevent="update({{$idPublication}})">Enregistrer les modifications</button>
                         
                         <a href="{{ route("admin.gestionpublications.publications.index")}}" id="cancel" name="cancel" class="float-right btn btn-danger">Retourner à la liste des publications</a>
                     </div>
