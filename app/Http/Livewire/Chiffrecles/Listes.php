@@ -5,8 +5,9 @@ namespace App\Http\Livewire\Chiffrecles;
 use App\Models\Chiffrecle;
 use Carbon\Carbon;
 use Livewire\Component;
-// use Livewire\WithPagination;
+use Livewire\WithPagination;
 
+// Ce que j'utilise actuellement
 use Illuminate\Pagination\Paginator;
 Paginator::useBootstrap();
 

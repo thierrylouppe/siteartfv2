@@ -83,6 +83,7 @@ class Listes extends Component
         // $fichierPath = "";
         
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Publication mise à jour avec succès!!!"]);
+        
         return redirect()->route("admin.gestionpublications.publications.index");
     }
     public function updateFichier($id)

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Articles;
 
 use App\Models\Article;
 use App\Models\ImageArticle;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Publications;
+namespace App\Http\Livewire\Articles;
 
 use App\Models\Article;
 use Carbon\Carbon;
@@ -19,8 +19,8 @@ class Show extends Component
     {
         Carbon::setLocale("fr");
         
-        return view('livewire.publications.show')
+        return view('livewire.articles.show')
             ->extends("layouts.master")
-            ->section("contenu");
+            ->section("contenu"); 
     }
 }

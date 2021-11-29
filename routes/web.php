@@ -1,13 +1,13 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\Articles\Articles;
 use App\Http\Livewire\Utilisateurs;
-use App\Http\Livewire\Articles;
+use App\Http\Livewire\Articles\Show;
 use App\Http\Livewire\Chiffrecles\Creates as ChiffreclesCreates;
 use App\Http\Livewire\Chiffrecles\Listes as ChiffreclesListes;
 use App\Http\Livewire\Publications\Creates;
 use App\Http\Livewire\Publications\Listes;
-use App\Http\Livewire\Publications\Show;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

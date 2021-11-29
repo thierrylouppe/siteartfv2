@@ -11,9 +11,9 @@
                             <div class="mb-1 border-0 card border-radius-0 box-shadow-1">
                                 <div class="p-4 card-body z-index-1">
                                     @if($article->image)
-                                        <div class="ml-0 post-image">
+                                        <div class="ml-0 post-image"> 
                                             <a href="#">
-                                                <img src="{{ asset('storage/'.$article->image) }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="{{ $article->titre }}"/>
+                                                <img src="{{ asset('storage/images/sliders/'.$article->image) }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="{{ $article->titre }}"/>
                                             </a>
                                         </div>
                                     @endif
