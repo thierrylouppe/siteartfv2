@@ -13,16 +13,14 @@ use Intervention\Image\Facades\Image;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
-use Illuminate\Pagination\Paginator;
-Paginator::useBootstrap();
 
 class Articles extends Component
 {
     //Trait pour la pagination
-    // use WithPagination;
     use WithFileUploads; 
+    use WithPagination;
 
-    // protected $paginationTheme = "bootstrap";
+    protected $paginationTheme = "bootstrap";
 
 
     public $idArticle;

@@ -8,12 +8,13 @@ use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-// use Livewire\WithPagination;
-use Illuminate\Pagination\Paginator;
-Paginator::useBootstrap();
+use Livewire\WithPagination;
 
 class Listes extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = "bootstrap";
+
     use WithFileUploads;
     public $idPublication; 
     public $titre, $typepublication, $status; 
@@ -24,7 +25,6 @@ class Listes extends Component
     public $search = "", $filtreType = "", $filtreEtat = "";
 
 
-    protected $paginationTheme = "bootstrap";
     public function render()
     {
         Carbon::setLocale("fr");

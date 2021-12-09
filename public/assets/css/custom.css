@@ -1,0 +1,70 @@
+/* Add here all your CSS customizations */
+
+/*
+* Header
+*/
+#header
+    .header-nav-main.custom-header-nav-main-dark-style
+    nav
+    > ul
+    > li
+    > a.active,
+#header
+    .header-nav-main.custom-header-nav-main-dark-style
+    nav
+    > ul
+    > li:hover
+    > a.active {
+    color: #a80000;
+}
+
+#header
+    .header-nav-main.custom-header-nav-main-dark-style
+    nav
+    > ul
+    > li
+    > a:after,
+#header
+    .header-nav-main.custom-header-nav-main-dark-style
+    nav
+    > ul
+    > li:hover
+    > a:after {
+    border-color: #005ca8 transparent transparent transparent !important;
+}
+
+@media (max-width: 991px) {
+    #header .header-nav-main nav > ul > li > a:not(.active) {
+        color: #1e1e1e;
+    }
+}
+
+.custom-toll-free * {
+    -webkit-transition: ease color 300ms;
+    -moz-transition: ease color 300ms;
+    -ms-transition: ease color 300ms;
+    -o-transition: ease color 300ms;
+    transition: ease color 300ms;
+}
+
+.custom-toll-free:hover * {
+    color: #005ca8;
+}
+
+/* customisation des carde actualité */
+.atualite p {
+    height: 30px;
+    width: 330px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* background-color: #005ca8; */
+}
+
+.atualite h4 {
+    height: 80px;
+    width: 330px;
+    /* background-color: #005ca8; */ 
+}
+
+

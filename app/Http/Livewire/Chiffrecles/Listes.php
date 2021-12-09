@@ -7,13 +7,11 @@ use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-// Ce que j'utilise actuellement
-use Illuminate\Pagination\Paginator;
-Paginator::useBootstrap();
-
 class Listes extends Component
 {
-    // use WithPagination;
+    use WithPagination;
+    protected $paginationTheme = "bootstrap";
+
     public $search = "";
     public $idChiffrecle;
     public $titre, $impor, $expor, $voyage, $flux, $mre;
