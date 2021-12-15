@@ -7,6 +7,7 @@ use App\Models\FichierJoint;
 use App\Models\ImageArticle;
 use App\Models\PhotoUser;
 use App\Models\Publication;
+use App\Models\Reglementation;
 use App\Models\StatuArticle;
 use App\Models\TypePublication;
 use App\Models\User;
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
         ImageArticle::factory(10)->create();
         Article::factory(10)->create();
         Publication::factory(10)->create();
+        Reglementation::factory(10)->create();
 
         $this->call(RoleSeeder::class);
         $this->call(PermissionSeeder::class);

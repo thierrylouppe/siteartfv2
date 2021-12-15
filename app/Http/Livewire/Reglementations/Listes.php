@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Livewire\Publications;
+namespace App\Http\Livewire\Reglementations;
 
-use App\Models\Publication;
+use App\Models\Reglementation;
 use Carbon\Carbon;
-use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -13,74 +12,73 @@ use Livewire\WithPagination;
 class Listes extends Component
 {
     use WithPagination;
+    use WithFileUploads;
     protected $paginationTheme = "bootstrap";
 
-    use WithFileUploads;
-    public $idPublication; 
-    public $titre, $typepublication, $status; 
+    public $idReglementation;
+    public $titre, $typereglementation, $status; 
     public $fichier = null;
-    public $fichierEdit = null;
+    public $fichierEdit = null; 
     public $showModifierFichier = 0;
     public $inputFileIterator = 0;
-    public $search = "", $filtreType = "", $filtreEtat = "";
-
+    public $search = "", $filtreType = "", $filtreEtat = ""; 
 
     public function render()
     {
         Carbon::setLocale("fr");
 
-        $publicationQuery = Publication::query();
+        $reglementationQuery = Reglementation::query();
 
         if($this->search != ""){
-            $publicationQuery->where('titre', "LIKE", "%". $this->search ."%")
-                             ->orWhere('typepublication', "LIKE", "%". $this->search ."%");
+            $reglementationQuery->where('titre', "LIKE", "%". $this->search ."%")
+                             ->orWhere('typereglementation', "LIKE", "%". $this->search ."%");
         }
 
         if($this->filtreType != ""){
-            $publicationQuery->where('typepublication', $this->filtreType);
+            $reglementationQuery->where('typereglementation', $this->filtreType);
         }
 
         if($this->filtreEtat != ""){
-            $publicationQuery->where('status', $this->filtreEtat);
+            $reglementationQuery->where('status', $this->filtreEtat);
         }
 
-        return view('livewire.publications.liste', [
-            "publications" => $publicationQuery->latest()->paginate(5),
-            "typepublications" => Publication::all(),
-            
+        return view('livewire.reglementations.liste', [
+            "reglementations" => $reglementationQuery->latest()->paginate(5),
+            "typereglementations" => Reglementation::all(),
         ])
         ->extends("layouts.master")
-        ->section("contenu"); 
+        ->section("contenu");
     }
 
     public function edit($id) 
     {
-        $publication = Publication::where('id', $id)->first();
-        $this->idPublication = $publication->id;
-        $this->titre = $publication->titre;
-        $this->typepublication = $publication->typepublication;
-        $this->fichier = $publication->pathfichier;
-        $this->status = $publication->status;
-        $this->user_id = $publication->user_id; 
+        $reglementation = Reglementation::where('id', $id)->first();
+        $this->idReglementation = $reglementation->id;
+        $this->titre = $reglementation->titre;
+        $this->typereglementation = $reglementation->typereglementation;
+        $this->fichier = $reglementation->pathfichier;
+        $this->status = $reglementation->status;
+        $this->user_id = $reglementation->user_id; 
     }
 
     public function update($id)
     {
         $validated = $this->validate([
             'titre' =>  'required',
-            'typepublication' => 'required',
+            'typereglementation' => 'required',
             'fichier' =>  'required',
             'status' =>  'required',
         ]);
         
-        $publication = Publication::find($id);
+        $publication = Reglementation::find($id);
 
         $publication->update($validated);
         
-        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Publication mise à jour avec succès!!!"]);
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Réglementation mise à jour avec succès!!!"]);
         
-        return redirect()->route("admin.gestionpublications.publications.index");
+        return redirect()->route("admin.gestionreglementations.reglementations.index");
     }
+
     public function updateFichier($id)
     {
         $validateArr = [
@@ -91,10 +89,10 @@ class Listes extends Component
         $fichierPath = ""; 
 
         if($this->fichierEdit != null){
-            $fichierPath = $this->fichierEdit->store('download/publications', 'public');
+            $fichierPath = $this->fichierEdit->store('download/reglementations', 'public');
         }
 
-        $oldFichier = Publication::find($id)->pathfichier; 
+        $oldFichier = Reglementation::find($id)->pathfichier; 
         
         $oldEmplacementImageExists = Storage::disk()->exists('public/' . $oldFichier);
          
@@ -102,7 +100,7 @@ class Listes extends Component
             Storage::disk()->delete('public/' . $oldFichier);
         }
 
-        Publication::find($id)->update([
+        Reglementation::find($id)->update([
             "pathfichier" => $fichierPath
         ]);
 
@@ -121,67 +119,67 @@ class Listes extends Component
         $this->showModifierFichier = 0;
     }
 
-    public function confirmePublierPublication($id){
+    public function confirmePublierReglementation($id){
         $this->dispatchBrowserEvent("showConfirmMessagePublier", ["message"=>[
-            "text" => "Vous êtes sur le point de publier cette publication. Voulez-vous continuer?",
+            "text" => "Vous êtes sur le point de publier cette reglementation. Voulez-vous continuer?",
             "title" => "Êtes-vous sûr de continuer",
             "type" => "warning",
             "data" => [
-                "publication_id" => $id,
+                "reglementation_id" => $id,
             ]
         ]]);
     }
 
-    public function confirmeDepublierPublication($id){
+    public function confirmeDepublierReglementation($id){
         $this->dispatchBrowserEvent("showConfirmMessageDepublier", ["message"=>[
-            "text" => "Vous êtes sur le point de dépublier cette publication. Voulez-vous continuer?",
+            "text" => "Vous êtes sur le point de dépublier cette reglementation. Voulez-vous continuer?",
             "title" => "Êtes-vous sûr de continuer",
             "type" => "warning",
             "data" => [
-                "publication_id" => $id,
+                "reglementation_id" => $id,
             ]
         ]]);
     }
 
-    public function publierPublication($id){
+    public function publierReglementation($id){
         //$userId = auth()->user()->id;
-        $validationAttributes["newPublication"]["status"] = "1"; 
+        $validationAttributes["newReglementation"]["status"] = "1"; 
         //$validationAttributes["newArticle"]["user_id"] = $userId; 
-        Publication::find($id)->update($validationAttributes['newPublication']);
+        Reglementation::find($id)->update($validationAttributes['newReglementation']);
         //Envoi msg succès
-        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Publication publier avec succès!!!"]);
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Reglementation publier avec succès!!!"]);
     }
 
     
-    public function depublierPublication($id){
-        $validationAttributes["newPublication"]["status"] = "0"; 
-        Publication::find($id)->update($validationAttributes['newPublication']);
+    public function depublierReglementation($id){
+        $validationAttributes["newReglementation"]["status"] = "0"; 
+        Reglementation::find($id)->update($validationAttributes['newReglementation']);
         //Envoi msg succès
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Publication dépublier avec succès!!!"]);
     }
 
-    public function confirmDeletePublication($id){
+    public function confirmDeleteReglementation($id){
         $this->dispatchBrowserEvent("showConfirmMessageDelete", ["message"=>[
             "text" => "Vous êtes sur le point de supprimer cette publication. Voulez-vous continuer?",
             "title" => "Êtes-vous sûr de continuer",
             "type" => "warning",
             "data" => [
-                "publication_id" => $id,
+                "reglementation_id" => $id,
             ]
         ]]);
     }
 
-    public function deletePublication($id){
-        $fichierPath = Publication::find($id)->pathfichier; 
+    public function deleteReglementation($id){
+        $fichierPath = Reglementation::find($id)->pathfichier; 
         
         $oldemplacementimageexists = Storage::disk()->exists('public/' . $fichierPath);
         if($oldemplacementimageexists){
             Storage::disk()->delete('public/' . $fichierPath);
         }
 
-        Publication::destroy($id);
+        Reglementation::destroy($id);
         //Envoi msg succès
-        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Publication supprimer avec succès!!!"]);
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Reglementation supprimer avec succès!!!"]);
     }
 
     protected function cleanupOldUploads()
@@ -200,3 +198,5 @@ class Listes extends Component
         }
     }
 }
+
+

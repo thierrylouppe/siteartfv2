@@ -22,13 +22,13 @@
 			<div class="row">
 				<div class="col-lg-3 order-lg-2">
 					<aside class="sidebar">
-							<div class="pb-1 mb-3 input-group">
-								<input class="form-control text-1" wire:model.debounce.200ms="search" placeholder="Search..." name="s" id="s" type="text">
-								<span class="input-group-append">
-									<button type="submit" class="p-2 btn btn-dark text-1"><i class="m-2 fas fa-search"></i></button>
-								</span>
-							</div>
-						<h5 class="pt-4 font-weight-bold">PUBLICATIONS</h5>
+						<div class="pb-1 mb-3 input-group">
+							<input class="form-control text-1" wire:model.debounce.200ms="search" placeholder="Search..." name="s" id="s" type="text">
+							<span class="input-group-append">
+								<button type="submit" class="p-2 btn btn-dark text-1"><i class="m-2 fas fa-search"></i></button>
+							</span>
+						</div>
+						<h5 class="pt-4 font-weight-bold">Actualités</h5>
 						
 						<div class="pb-2 mb-4 tabs tabs-dark">
 							<ul class="nav nav-tabs">

@@ -8,10 +8,20 @@ use App\Http\Livewire\Chiffrecles\Creates as ChiffreclesCreates;
 use App\Http\Livewire\Chiffrecles\Listes as ChiffreclesListes;
 use App\Http\Livewire\Front\Actualites;
 use App\Http\Livewire\Front\Home;
+use App\Http\Livewire\Front\Publications\Avis;
+use App\Http\Livewire\Front\Publications\Bulletinsregulateurs;
 use App\Http\Livewire\Front\Publications\Etudes;
+use App\Http\Livewire\Front\Publications\Seriestatistiques;
+use App\Http\Livewire\Front\Reglementations\Arretes;
+use App\Http\Livewire\Front\Reglementations\Circulaires;
+use App\Http\Livewire\Front\Reglementations\Decrets;
+use App\Http\Livewire\Front\Reglementations\Instructions;
+use App\Http\Livewire\Front\Reglementations\Lois;
 use App\Http\Livewire\Front\Showactualites;
 use App\Http\Livewire\Publications\Creates;
 use App\Http\Livewire\Publications\Listes;
+use App\Http\Livewire\Reglementations\Creates as ReglementationsCreates;
+use App\Http\Livewire\Reglementations\Listes as ReglementationsListes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -126,13 +136,29 @@ Route::group([
     "prefix" => "publications", 
     'as' => 'publications.'
 ], function(){
-    Route::get('/series-statistiques', [SeriestatistiqueController::class, 'indexfront'])->name('series-statistiques');
+    Route::get('/series-statistiques', Seriestatistiques::class)->name('series-statistiques');
 
-    Route::get('/avis', )->name('avis');
+    Route::get('/avis', Avis::class)->name('avis');
 
     Route::get("/etudes", Etudes::class)->name("etudes");
 
-    Route::get("/bulletins-du-regulateur", )->name("bulletins-du-regulateur");
+    Route::get("/bulletins-regulateur", Bulletinsregulateurs::class)->name("bulletins-regulateur");
+});
+
+/**route onglet reglementation */
+Route::group([
+    "prefix" => "reglementations", 
+    'as' => 'reglementations.'
+], function(){
+    Route::get('/lois', Lois::class)->name('lois');
+
+    Route::get('/decrets', Decrets::class)->name('decrets');
+
+    Route::get("/arretes", Arretes::class)->name("arretes");
+
+    Route::get("/circulaires", Circulaires::class)->name("circulaires");
+    
+    Route::get("/instructions", Instructions::class)->name("instructions");
 });
 
 /**actualites */
@@ -184,6 +210,15 @@ Route::group([
     ], function(){
         Route::get("/liste-publications", Listes::class)->name('publications.index');
         Route::get("/creation-publications", Creates::class)->name('publications.create');
+    });
+
+    /*Route gestion reglementations*/
+    Route::group([
+        "prefix" => "gestionreglementations", 
+        'as' => 'gestionreglementations.'
+    ], function(){
+        Route::get("/liste-reglementations", ReglementationsListes::class)->name('reglementations.index');
+        Route::get("/creation-reglementations", ReglementationsCreates::class)->name('reglementations.create');
     });
 
     /*Route gestion chiffres cles*/

@@ -56,7 +56,7 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown">
-                                            <a class="dropdown-item dropdown-toggle {{ request()->is('reglementation/*')? 'active' : '' }}" href="#">
+                                            <a class="dropdown-item dropdown-toggle {{ request()->is('reglementations/*')? 'active' : '' }}" href="#">
                                                 Réglementation
                                             </a>
                                             <ul class="dropdown-menu">
@@ -66,12 +66,12 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item" href="{{ route('reglementations.decret') }}">
+                                                    <a class="dropdown-item" href="{{ route('reglementations.decrets') }}">
                                                         Decrets
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item" href="{{ route('reglementations.arrete') }}">
+                                                    <a class="dropdown-item" href="{{ route('reglementations.arretes') }}">
                                                         Arrêtés
                                                     </a>
                                                 </li>
@@ -120,7 +120,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item" href="{{ route('publications.bulletins-du-regulateur') }}">
+                                                    <a class="dropdown-item" href="{{ route('publications.bulletins-regulateur') }}">
                                                         Bulletins du régulateur
                                                     </a>
                                                 </li>

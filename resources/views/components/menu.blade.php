@@ -93,7 +93,17 @@
             <a href="{{ route("admin.gestionpublications.publications.index")}}" class="nav-link {{ setMenuClass("admin.gestionpublications.", 'active') }}">
               <i class="nav-icon fas fa-coins"></i>
               <p>
-                Gest des publications
+                Gest publications
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-header">REGLEMENTATIOLNS</li>
+          <li class="nav-item">
+            <a href="{{ route("admin.gestionreglementations.reglementations.index")}}" class="nav-link {{ setMenuClass("admin.gestionreglementations.", 'active') }}">
+              <i class="nav-icon fas fa-coins"></i>
+              <p>
+                Gest reglementations
               </p>
             </a>
           </li>
