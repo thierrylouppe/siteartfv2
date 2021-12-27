@@ -9,7 +9,7 @@
 					<ul class="breadcrumb d-block text-md-right">
 						<li><a class="aperso" href="#">Accueil</a></li>
 						<li><a class="aperso" href="#">Publications</a></li>
-						<li class="active "><a class="text-color-light">Avis</a></li>
+						<li class="active "><a class="text-color-light">Series statistiques</a></li>
 					</ul>
 				</div>
 			</div>
@@ -26,7 +26,8 @@
 					<div class="p-0 card-body">
 						<h2 class="mt-2 font-weight-bold">SERIES STATISTIQUES </h2>
 						<hr class="my-3">
-						@foreach($seriestatistiques as $seriestatistique)
+						@if ($nbreseriestatistiques > 0)
+						@forelse($seriestatistiques as $seriestatistique)
 						<section class="mb-5 call-to-action featured featured-primary">
 							<div class="col-sm-9 col-lg-9">
 								<div class="call-to-action-content">
@@ -35,11 +36,20 @@
 							</div>
 							<div class="col-sm-3 col-lg-3">
 								<div class="call-to-action-btn">
-									<a href="{{asset('storage/'.$seriestatistique->file)}}" download="{{$seriestatistique->title}}.pdf" target="_blank" class="btn btn-modern text-2 btn-primary">Télécharger <span><i class="fas fa-file-pdf"></i></span></a>
+									<a href="{{asset('storage/'.$seriestatistique->pathfichier)}}" download="{{$seriestatistique->titre}}.pdf" target="_blank" class="btn btn-modern text-2 btn-primary">Télécharger <span><i class="fas fa-file-pdf"></i></span></a>
 								</div>
 							</div>
 						</section>
-						@endforeach
+						@empty
+						<tr>
+							<td colspan="6">
+								<div class="alert alert-danger">
+									<h5><i class="icon fas fa-ban"></i> Information!</h5>
+									Aucune donnée trouvée par rapport aux éléments de recherche entrés.
+								</div>
+							</td>
+						</tr>
+						@endforelse
 						<div class="row">
 							<div class="col">
 								<ul class="float-right pagination">
@@ -47,6 +57,9 @@
 								</ul>
 							</div>
 						</div>
+						@else
+							@include('layouts.nodata')
+						@endif
 					</div>
 				</div>
 			</div>
@@ -54,10 +67,12 @@
 		</div>
 			<div class="pt-4 col-lg-3 pt-lg-0">
 				<aside class="sidebar">
+					@if ($nbreseriestatistiques > 0)
 					<div class="px-3 mt-4">
 						<h3 class="m-0 mb-2 text-color-secondary text-capitalize font-weight-bold text-5">Recherche</h3>
 						<input class="form-control text-1" wire:model.debounce.200ms="search" placeholder="Rechercher votre étude" name="s" id="s" type="text">	
 					</div>
+					@endif
 					<div class="px-3 mt-4">
 						<h3 class="m-0 text-color-secondary text-capitalize font-weight-bold text-5">Publications</h3>
 						<ul class="mt-2 mb-0 nav nav-list flex-column p-relative right-9">

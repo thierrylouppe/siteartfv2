@@ -27,7 +27,7 @@
 						<h2 class="mt-2 font-weight-bold">INSTRUCTIONS </h2>
 						<hr class="my-3">
 						@if($nbreinstructions > 0)
-						@foreach($instructions as $instruction)
+						@forelse($instructions as $instruction)
 						<section class="mb-5 call-to-action featured featured-primary">
 							<div class="col-sm-9 col-lg-9">
 								<div class="call-to-action-content">
@@ -40,7 +40,16 @@
 								</div>
 							</div>
 						</section>
-						@endforeach
+						@empty
+						<tr>
+							<td colspan="6">
+								<div class="alert alert-danger">
+									<h5><i class="icon fas fa-ban"></i> Information!</h5>
+									Aucune donnée trouvée par rapport aux éléments de recherche entrés.
+								</div>
+							</td>
+						</tr>
+						@endforelse
 						<div class="row">
 							<div class="col">
 								<ul class="float-right pagination">
@@ -58,10 +67,12 @@
 		</div>
 			<div class="pt-4 col-lg-3 pt-lg-0">
 				<aside class="sidebar">
+					@if($nbreinstructions > 0)
 					<div class="px-3 mt-4">
 						<h3 class="m-0 mb-2 text-color-secondary text-capitalize font-weight-bold text-5">Recherche</h3>
 						<input class="form-control text-1" wire:model.debounce.200ms="search" placeholder="Rechercher votre étude" name="s" id="s" type="text">	
 					</div>
+					@endif
 					<div class="px-3 mt-4">
 						<h3 class="m-0 text-color-secondary text-capitalize font-weight-bold text-5">Réglementations</h3>
 						<ul class="mt-2 mb-0 nav nav-list flex-column p-relative right-9">

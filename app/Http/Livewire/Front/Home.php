@@ -16,7 +16,7 @@ class Home extends Component
 
         $articleQuery = Article::query();
 
-        return view('livewire.front.home', [
+        return view('fronts.accueil.home', [
             "nbreactualites" => count(Article::all()),
              "nbrechiffrecles" => count(Chiffrecle::all()),
              "chiffrecles" => Chiffrecle::latest()->paginate(1),

@@ -26,7 +26,7 @@ class Etudes extends Component
         }
 
         return view('fronts.publications.etudes', [
-            "nbreetude" => count(Publication::where('typepublication', 'etude')->get()),
+            "nbreetudes" => count(Publication::where('typepublication', 'etude')->where('status', 1)->get()),
             "etudesenligne" => $etudeQuery->where('typepublication', 'etude')->where('status', 1)->latest()->paginate(4),
         ])
                 ->extends("fronts.layouts.master")

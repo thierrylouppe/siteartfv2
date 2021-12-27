@@ -19,49 +19,57 @@
 		<div class="row">
 			{{-- Contenue --}}
 			<div class="col-lg-9">
-
-			<div class="mb-5 border-0 card border-radius-0 box-shadow-1">
-				<div class="p-4 card-body z-index-1">
-
-					<div class="p-0 card-body">
-						<h2 class="mt-2 font-weight-bold">LOIS </h2>
-						<hr class="my-3">
-						@if($nbrelois > 0)
-						@foreach($lois as $loi)
-						<section class="mb-5 call-to-action featured featured-primary">
-							<div class="col-sm-9 col-lg-9">
-								<div class="call-to-action-content">
-									<h3><strong class="font-weight-extra-bold">{{$loi->titre}}</strong></h3>
+					<div class="mb-5 border-0 card border-radius-0 box-shadow-1">
+						<div class="p-4 card-body z-index-1">
+							<div class="p-0 card-body">
+								<h2 class="mt-2 font-weight-bold">LOIS </h2>
+								<hr class="my-3">
+								@if($nbrelois > 0)
+								@forelse($lois as $loi)
+								<section class="mb-5 call-to-action featured featured-primary">
+									<div class="col-sm-9 col-lg-9">
+										<div class="call-to-action-content">
+											<h3><strong class="font-weight-extra-bold">{{$loi->titre}}</strong></h3>
+										</div>
+									</div>
+									<div class="col-sm-3 col-lg-3">
+										<div class="call-to-action-btn">
+											<a href="{{asset('storage/'.$loi->pathfichier)}}" download="{{$loi->titre}}.pdf" target="_blank" class="btn btn-modern text-2 btn-primary">Télécharger <span><i class="fas fa-file-pdf"></i></span></a>
+										</div>
+									</div>
+								</section>
+								@empty
+								<tr>
+									<td colspan="6">
+										<div class="alert alert-danger">
+											<h5><i class="icon fas fa-ban"></i> Information!</h5>
+											Aucune donnée trouvée par rapport aux éléments de recherche entrés.
+										</div>
+									</td>
+								</tr>
+								@endforelse
+								<div class="row">
+									<div class="col">
+										<ul class="float-right pagination">
+											{{ $lois->links()}}
+										</ul>
+									</div>
 								</div>
-							</div>
-							<div class="col-sm-3 col-lg-3">
-								<div class="call-to-action-btn">
-									<a href="{{asset('storage/'.$loi->pathfichier)}}" download="{{$loi->titre}}.pdf" target="_blank" class="btn btn-modern text-2 btn-primary">Télécharger <span><i class="fas fa-file-pdf"></i></span></a>
-								</div>
-							</div>
-						</section>
-						@endforeach
-						<div class="row">
-							<div class="col">
-								<ul class="float-right pagination">
-									{{ $lois->links()}}
-								</ul>
+								@else
+								@include('layouts.nodata')
+								@endif
 							</div>
 						</div>
-						@else
-						@include('layouts.nodata')
-						@endif
 					</div>
-				</div>
 			</div>
-
-		</div>
 			<div class="pt-4 col-lg-3 pt-lg-0">
 				<aside class="sidebar">
+					@if($nbrelois > 0)
 					<div class="px-3 mt-4">
 						<h3 class="m-0 mb-2 text-color-secondary text-capitalize font-weight-bold text-5">Recherche</h3>
 						<input class="form-control text-1" wire:model.debounce.200ms="search" placeholder="Rechercher votre étude" name="s" id="s" type="text">	
 					</div>
+					@endif
 					<div class="px-3 mt-4">
 						<h3 class="m-0 text-color-secondary text-capitalize font-weight-bold text-5">Réglementations</h3>
 						<ul class="mt-2 mb-0 nav nav-list flex-column p-relative right-9">

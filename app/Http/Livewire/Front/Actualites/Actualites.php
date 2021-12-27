@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Front;
+namespace App\Http\Livewire\Front\Actualites;
 
 use App\Models\Article;
 use Carbon\Carbon;
@@ -25,7 +25,7 @@ class Actualites extends Component
             $articleQuery->where('titre', "LIKE", "%". $this->search ."%");
         }
 
-        return view('livewire.front.actualites.actualites', [
+        return view('fronts.actualites.actualites', [
             "nbreactualites" => count(Article::all()),
             "articlesenligne" => $articleQuery->where('status', 1)->latest()->paginate(4),
             "articlerecents" => Article::where('status', 1)->latest()->paginate(3),

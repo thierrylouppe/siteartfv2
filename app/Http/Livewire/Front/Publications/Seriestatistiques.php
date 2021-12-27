@@ -25,10 +25,11 @@ class Seriestatistiques extends Component
         }
 
         return view('fronts.publications.series-statistiques', [
-            "nbreetude" => count(Publication::where('typepublication', 'seriestatistique')->get()),
+            "nbreseriestatistiques" => count(Publication::where('typepublication', 'seriestatistique')->where('status', 1)->get()),
             "seriestatistiques" => $seriestatistiqueQuery->where('typepublication', 'seriestatistique')->where('status', 1)->latest()->paginate(4),
         ])
                 ->extends("fronts.layouts.master")
                 ->section("body");
     }
 }
+

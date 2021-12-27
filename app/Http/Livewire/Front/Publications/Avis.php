@@ -25,7 +25,7 @@ class Avis extends Component
         }
 
         return view('fronts.publications.avis', [
-            "nbreetude" => count(Publication::where('typepublication', 'avis')->where('status', 1)->get()),
+            "nbreavis" => count(Publication::where('typepublication', 'avis')->where('status', 1)->get()),
             "avisenligne" => $etudeQuery->where('typepublication', 'avis')->where('status', 1)->latest()->paginate(4),
         ])
                 ->extends("fronts.layouts.master")

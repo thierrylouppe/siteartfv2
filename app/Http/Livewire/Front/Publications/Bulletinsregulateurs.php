@@ -25,7 +25,7 @@ class Bulletinsregulateurs extends Component
         }
 
         return view('fronts.publications.bulletins-regulateur', [
-            "nbreetude" => count(Publication::where('typepublication', 'bulletinsduregulateur')->get()),
+            "nbrebulletinregulateurs" => count(Publication::where('typepublication', 'bulletinsduregulateur')->where('status', 1)->get()),
             "bulletinregulateurs" => $bulletinregulateurQuery->where('typepublication', 'bulletinsduregulateur')->where('status', 1)->latest()->paginate(4),
         ])
                 ->extends("fronts.layouts.master")

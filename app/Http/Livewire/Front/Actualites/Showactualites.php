@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Front;
+namespace App\Http\Livewire\Front\Actualites;
 
 use App\Models\Article;
 use Carbon\Carbon;
@@ -20,7 +20,7 @@ class Showactualites extends Component
 
         $articleQuery = Article::query();
 
-        return view('livewire.front.actualites.actualite-detail', [
+        return view('fronts.actualites.actualite-detail', [
             "articlesenligne" => $articleQuery->where('status', 1)->latest()->paginate(6)
         ])
         
