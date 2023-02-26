@@ -8,6 +8,7 @@ use App\Http\Livewire\Chiffrecles\Creates as ChiffreclesCreates;
 use App\Http\Livewire\Chiffrecles\Listes as ChiffreclesListes;
 use App\Http\Livewire\Front\Actualites\Actualites;
 use App\Http\Livewire\Front\Actualites\Showactualites;
+use App\Http\Livewire\Front\Contacts\Contacts;
 use App\Http\Livewire\Front\Home;
 use App\Http\Livewire\Front\Publications\Avis;
 use App\Http\Livewire\Front\Publications\Bulletinsregulateurs;
@@ -172,7 +173,7 @@ Route::group([
 });
 
 //Route contact 
-Route::get('/contact', )->name('contact');
+Route::get('/contact', Contacts::class)->name('contact');
 Route::post('/contact', )->name('contact.store');
 
 /*
