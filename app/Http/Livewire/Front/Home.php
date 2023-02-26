@@ -20,7 +20,7 @@ class Home extends Component
             "nbreactualites" => count(Article::all()),
              "nbrechiffrecles" => count(Chiffrecle::all()),
              "chiffrecles" => Chiffrecle::latest()->paginate(1),
-             "articles" => $articleQuery->latest()->paginate(3)
+             "articles" => $articleQuery->where('status', 1)->latest()->paginate(3)
         ])
             ->extends("fronts.layouts.master")
             ->section("body");

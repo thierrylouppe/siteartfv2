@@ -86,7 +86,7 @@
                         <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
                         <li class="social-icons-instagram"><a href="http://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
                     </ul>
-                    <p class="custom-text-color-1">© Copyright 2021. Tous droits réservés - ARTF.</p>
+                    <p class="custom-text-color-1">© Copyright 2023. Tous droits réservés - ARTF.</p>
                 </div>
             </div>
         </div>

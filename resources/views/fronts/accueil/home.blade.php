@@ -291,7 +291,7 @@
                                         <time pubdate datetime="{{Carbon\Carbon::parse($actualite->updated_at)->toDateString()}}">Publié {{Carbon\Carbon::parse($actualite->updated_at)->diffForHumans()}}</time>
                                     </p>
                                     <div class="p-0 card-body">
-                                        <h4 class="pb-1 mb-2 card-title text-5 font-weight-bold"><a class="text-color-dark text-color-hover-primary text-decoration-none" href="{{ route('actualites.actualitedetail', $actualite->slug) }}">{{$actualite->title }}</a></h4>
+                                        <h4 class="pb-1 mb-2 card-title text-5 font-weight-bold"><a class="text-color-dark text-color-hover-primary text-decoration-none" href="{{ route('actualites.actualitedetail', $actualite->slug) }}"></a>{{$actualite->titre }}</h4>
                                         <a href="{{ route('actualites.actualitedetail', $actualite->slug) }}" class="pl-0 btn btn-link font-weight-semibold text-decoration-none text-3">LIRE LA SUITE</a>
                                     </div>
                                 </div>
