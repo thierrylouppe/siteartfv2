@@ -38,6 +38,65 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasRole("agent");
         });
 
+
+        //donc les droits aux auteurs et admin de naviger sur les differentes pages 
+        Gate::define('manage-users', function (User $user) {
+            return $user->hasAnyRole(['admin']);
+        });
+        /*Gate::define('manage-users', function(User $user){
+            return $user->hasAnyRole(['auteur', 'admin']);
+        });*/
+
+        //verifi si l'user est admin et le donne le droit de modifier 
+        Gate::define('edit-users', function (User $user) {
+            return $user->hasAnyRole(['auteur', 'admin']);
+        });
+
+        //verifi si l'user est admin ou auteur et le donne le droit sur la gestion de l'actualité 
+        Gate::define('gestion-actualite', function (User $user) {
+            return $user->hasAnyRole(['auteur', 'admin']);
+        });
+
+        //verifi si l'user est admin et le donne le droit de supprimer  
+        Gate::define('delete-users', function (User $user) {
+            return $user->isAdmin();
+        });
+
+        //verifi si l'user est admin et le donne le droit de supprimer l'article 
+        Gate::define('delete-article', function (User $user) {
+            return $user->isAdmin();
+        });
+
+        //verifi si l'user est admin et le donne le droit de publier l'article  
+        Gate::define('publier-article', function (User $user) {
+            return $user->isAdmin();
+        });
+
+        //verifi si l'user est admin et le donne le droit de dépublier l'article  
+        Gate::define('depublier-article', function (User $user) {
+            return $user->isAdmin();
+        });
+
+        //verifi si l'user est admin et le donne le droit de gérer publication et réglementation  
+        Gate::define('gestion-publication', function (User $user) {
+            return $user->isAdmin();
+        });
+
+
+
+
+
+
+
+        Gate::define('isUtilisateur', function (User $user) {
+            return $user->isUtilisateur();
+        });
+
+        //verifi si l'user est admin ou auteur et le donne le droit 
+        Gate::define('admin-auteur', function (User $user) {
+            return $user->hasAnyRole(['auteur', 'admin']);
+        });
+
         
 
     }

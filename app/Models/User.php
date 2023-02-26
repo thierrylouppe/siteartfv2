@@ -79,4 +79,24 @@ class User extends Authenticatable
     public function getAllRoleNamesAttribute(){
         return $this->roles->implode("nomRole", ' | ');
     }
+
+
+    // Mon ajout
+    //fonction qui vérifi si l'utilisateur est admin
+    public function isAdmin()
+    {
+        return $this->roles()->where('nomRole', 'admin')->first(); 
+    }
+
+    //recuperation d'un tableau de roles (on l'ajoute sur nos page admin )
+    public function hasAnyRole(array $roles)
+    {
+        return $this->roles()->whereIn('nomRole', $roles)->first(); 
+    }
+
+    //fonction qui vérifi si l'utilisateur est admin
+    public function isUtilisateur()
+    {
+        return $this->roles()->where('nomRole', 'utilisateur')->first(); 
+    }
 }

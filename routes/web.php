@@ -6,6 +6,7 @@ use App\Http\Livewire\Utilisateurs;
 use App\Http\Livewire\Articles\Show;
 use App\Http\Livewire\Chiffrecles\Creates as ChiffreclesCreates;
 use App\Http\Livewire\Chiffrecles\Listes as ChiffreclesListes;
+use App\Http\Livewire\Dashboards\Dashboards;
 use App\Http\Livewire\Front\Actualites\Actualites;
 use App\Http\Livewire\Front\Actualites\Showactualites;
 use App\Http\Livewire\Front\Contacts\Contacts;
@@ -182,10 +183,13 @@ Route::post('/contact', )->name('contact.store');
 |--------------------------------------------------------------------------
 */
 
+Route::middleware(['auth'])->get("/dashboard", Dashboards::class)->name("dashboard");
 Route::group([
     "middleware" => ["auth", "auth.admin"],
     'as' => 'admin.'
 ], function(){
+
+    //Route Dashboard 
     /*Route gestion users*/
     Route::group([
         "prefix" => "habilitations", 
