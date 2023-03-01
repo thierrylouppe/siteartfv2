@@ -11,7 +11,7 @@
             </a>
           </li>
           
-          @can("admin")
+          @can("gestion-actualite")
             <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -35,7 +35,9 @@
               </li>
             </ul>
           </li>
+          @endcan
 
+          @can("admin")
           <li class="nav-item {{ setMenuClass("admin.habilitations.", 'menu-open') }}" >
             <a href="#" class="nav-link">
               <i class=" nav-icon fas fa-user-shield"></i>
@@ -58,7 +60,7 @@
           </li>
           @endcan
           
-          @can("agent")
+          @can('gestion-actualite')
             <li class="nav-item {{ setMenuClass("admin.gestionarticles.", 'menu-open') }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>

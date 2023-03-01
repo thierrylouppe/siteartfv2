@@ -97,6 +97,18 @@
             timer: 5000
         })
         });
+
+    </script>
+    <script>
+        window.addEventListener("showEmailMessage", event=>{
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: event.detail.message || 'Opération échoué !',
+                showConfirmButton: false,
+                timer: 1500
+                })
+        });
     </script>
     
 

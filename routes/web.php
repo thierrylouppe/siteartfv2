@@ -20,6 +20,9 @@ use App\Http\Livewire\Front\Reglementations\Circulaires;
 use App\Http\Livewire\Front\Reglementations\Decrets;
 use App\Http\Livewire\Front\Reglementations\Instructions;
 use App\Http\Livewire\Front\Reglementations\Lois;
+use App\Http\Livewire\Profilusers\Changepassword;
+use App\Http\Livewire\Profilusers\Profilmanagers;
+use App\Http\Livewire\Profilusers\Profilusers;
 use App\Http\Livewire\Publications\Creates;
 use App\Http\Livewire\Publications\Listes;
 use App\Http\Livewire\Reglementations\Creates as ReglementationsCreates;
@@ -184,8 +187,21 @@ Route::post('/contact', )->name('contact.store');
 */
 
 Route::middleware(['auth'])->get("/dashboard", Dashboards::class)->name("dashboard");
+// Route::middleware(['auth'])->get("/change-password", Changepassword::class)->name("changepassword");
 Route::group([
-    "middleware" => ["auth", "auth.admin"],
+    "middleware" => ["auth"],
+], function(){
+    Route::group([
+        "prefix" => "profils", 
+        'as' => 'profils.'
+    ], function(){
+        Route::get("/change-password", Profilmanagers::class)->name("changepassword");
+        Route::get("/profils", Profilmanagers::class)->name("profils");
+    });
+});
+
+Route::group([
+    "middleware" => ["auth", 'can:gestion-actualite'],
     'as' => 'admin.'
 ], function(){
 
@@ -196,7 +212,7 @@ Route::group([
         'as' => 'habilitations.'
     ], function(){
         // hold approch:Route::get("/utilisateurs", [UserController::class, "index"])->name('users.index');
-        Route::get("/utilisateurs", Utilisateurs::class)->name('users.index');
+        Route::middleware('can:manage-users')->get("/utilisateurs", Utilisateurs::class)->name('users.index');
     });
 
     /*Route gestion articles*/

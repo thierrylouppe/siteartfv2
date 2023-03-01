@@ -69,4 +69,13 @@ function remove_operateur($text)
     return str_replace(["+", "-"], "", $text);
 } 
 
+//Pour menu et lien dynamique
+function currentRouteIs(string $route): bool{
+    return request()->route()->getName() === $route;
+}
+
+function currentRouteContains(\Illuminate\Support\Collection $routes): bool{
+    return $routes->contains(request()->route()->getName());
+}
+
 

@@ -83,6 +83,12 @@ class User extends Authenticatable
 
     // Mon ajout
     //fonction qui vérifi si l'utilisateur est admin
+    public function isSupAdmin()
+    {
+        return $this->roles()->where('nomRole', 'supadmin')->first(); 
+    }
+
+    //fonction qui vérifi si l'utilisateur est admin
     public function isAdmin()
     {
         return $this->roles()->where('nomRole', 'admin')->first(); 
@@ -99,4 +105,25 @@ class User extends Authenticatable
     {
         return $this->roles()->where('nomRole', 'utilisateur')->first(); 
     }
+
+    // Permissions des users
+    public function canPublish()
+    {
+        return $this->permissions()->where('nomPermission', 'publier')->first(); 
+    }
+    public function canUnpublish()
+    {
+        return $this->permissions()->where('nomPermission', 'depublier')->first(); 
+    }
+    public function canConsult()
+    {
+        return $this->permissions()->where('nomPermission', 'consulter')->first(); 
+    }
+    public function canEdit()
+    {
+        return $this->permissions()->where('nomPermission', 'editer')->first(); 
+    }
+
+
+    
 }

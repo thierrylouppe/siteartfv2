@@ -59,7 +59,7 @@ class AuthServiceProvider extends ServiceProvider
 
         //verifi si l'user est admin et le donne le droit de supprimer  
         Gate::define('delete-users', function (User $user) {
-            return $user->isAdmin();
+            return $user->isSupAdmin();
         });
 
         //verifi si l'user est admin et le donne le droit de supprimer l'article 
@@ -98,6 +98,20 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         
+        // Permission user
+        //verifi si l'user a le droit de publier et le donne le droit de dépublier l'article  
+        Gate::define('publier', function (User $user) {
+            return $user->canPublish();
+        });
+        Gate::define('depublier', function (User $user) {
+            return $user->canUnpublish();
+        });
+        Gate::define('consulter', function (User $user) {
+            return $user->canConsult();
+        });
+        Gate::define('editer', function (User $user) {
+            return $user->canEdit();
+        });
 
     }
 }

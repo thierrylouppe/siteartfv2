@@ -75,11 +75,19 @@
                                     <a href="{{ route('admin.gestionarticles.articles.show', $article->slug) }}" title="Aperçu" class="btn btn-link"><i class="fas fa-eye"></i></a>
                                     
                                     @if ($article->status == 0)
-                                        <button class="btn btn-link" title="Editer" wire:click.prevent='goToEditArticle({{$article->id}})'><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-link" title="Publier" wire:click.prevent='confirmePublierArticle({{$article->id}})'><i class="fas fa-arrow-up"></i></button>
-                                        <button class="btn btn-link" title="Supprimer" wire:click.prevent='confirmDeleteArticle({{$article->id}})'><i class="far fa-trash-alt"></i></button>
+                                        @can('editer')
+                                            <button class="btn btn-link" title="Editer" wire:click.prevent='goToEditArticle({{$article->id}})'><i class="fas fa-edit"></i></button>
+                                        @endcan
+                                        @can('publier')
+                                            <button class="btn btn-link" title="Publier" wire:click.prevent='confirmePublierArticle({{$article->id}})'><i class="fas fa-arrow-up"></i></button>
+                                        @endcan
+                                        @can('delete-article')
+                                            <button class="btn btn-link" title="Supprimer" wire:click.prevent='confirmDeleteArticle({{$article->id}})'><i class="far fa-trash-alt"></i></button> 
+                                        @endcan
                                     @else
-                                        <button class="btn btn-link" title="Dépublier" wire:click.prevent='confirmeDepublierArticle({{$article->id}})'><i class="fas fa-arrow-down"></i></button>
+                                        @can('depublier')
+                                            <button class="btn btn-link" title="Dépublier" wire:click.prevent='confirmeDepublierArticle({{$article->id}})'><i class="fas fa-arrow-down"></i></button>
+                                        @endcan
                                     @endif
                                 </td>
                             </tr>

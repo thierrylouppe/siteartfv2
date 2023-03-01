@@ -14,11 +14,9 @@
                 </p>
 
                 <ul class="mb-3 list-group bg-dark">
+                  
                   <li class="list-group-item">
-                    <a href="#" class="d-flex align-items-center "><i class="pr-2 fa fa-lock"></i><b >Mot de passe</b> </a>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="#" class="d-flex align-items-center"><i class="pr-2 fa fa-user"></i><b >Mon profile</b> </a>
+                    <a href="{{ route('profils.profils') }}" class="d-flex align-items-center"><i class="pr-2 fa fa-user"></i><b >Mon profile</b> </a>
                   </li>
                 </ul>
 
