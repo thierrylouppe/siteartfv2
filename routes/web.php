@@ -201,7 +201,7 @@ Route::group([
 });
 
 Route::group([
-    "middleware" => ["auth", 'can:gestion-actualite'],
+    "middleware" => ["auth", 'can:admin'],
     'as' => 'admin.'
 ], function(){
 
@@ -214,7 +214,14 @@ Route::group([
         // hold approch:Route::get("/utilisateurs", [UserController::class, "index"])->name('users.index');
         Route::middleware('can:manage-users')->get("/utilisateurs", Utilisateurs::class)->name('users.index');
     });
+});
 
+Route::group([
+    "middleware" => ["auth", 'can:gestion-actualite'],
+    'as' => 'admin.'
+], function(){
+
+    //Route Dashboard 
     /*Route gestion articles*/
     Route::group([
         "prefix" => "gestionarticles", 

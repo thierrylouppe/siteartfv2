@@ -27,7 +27,7 @@
                     {{ session()->get('success')}}
                 </div>
                 @endif
-                @can('gestion-publication')
+                @can('admin-auteur')
                 <div class="col-sm-6">
                     <h3 class="m-0 text-dark">Publications</h3>
                 </div><!-- /.col -->
@@ -303,6 +303,10 @@
 
             @can('isUtilisateur')
             <h1>Ici sera le dashboard de l'utilisateur simple</h1>
+            @endcan
+
+            @can('')
+            <h1>Contacter votre administrateur</h1>
             @endcan
         </section>
         <!-- /.content -->

@@ -87,11 +87,21 @@
                                         @endif
                                         <td class="text-center">
                                             @if ($reglementation->status == 0)
-                                                <button class="btn btn-link" title="Editer" data-toggle="modal" data-target="#modal-info" wire:click.prevent="edit({{$reglementation->id}})"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-link" title="Publier" wire:click.prevent='confirmePublierReglementation({{$reglementation->id}})'><i class="fas fa-arrow-up"></i></button>
-                                                <button class="btn btn-link" title="Supprimer" wire:click.prevent='confirmDeleteReglementation({{$reglementation->id}})'><i class="far fa-trash-alt"></i></button>
+                                                @can('editer')
+                                                    <button class="btn btn-link" title="Editer" data-toggle="modal" data-target="#modal-info" wire:click.prevent="edit({{$reglementation->id}})"><i class="fas fa-edit"></i></button>
+                                                @endcan
+
+                                                @can('publier')
+                                                    <button class="btn btn-link" title="Publier" wire:click.prevent='confirmePublierReglementation({{$reglementation->id}})'><i class="fas fa-arrow-up"></i></button>
+                                                @endcan
+
+                                                @can('delete-article')
+                                                    <button class="btn btn-link" title="Supprimer" wire:click.prevent='confirmDeleteReglementation({{$reglementation->id}})'><i class="far fa-trash-alt"></i></button>
+                                                @endcan
                                             @else
-                                                <button class="btn btn-link" title="Dépublier" wire:click.prevent='confirmeDepublierReglementation({{$reglementation->id}})'><i class="fas fa-arrow-down"></i></button>
+                                                @can('depublier')
+                                                    <button class="btn btn-link" title="Dépublier" wire:click.prevent='confirmeDepublierReglementation({{$reglementation->id}})'><i class="fas fa-arrow-down"></i></button>
+                                                @endcan
                                             @endif
                                         </td>
                                     </tr>

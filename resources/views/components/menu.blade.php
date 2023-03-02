@@ -3,7 +3,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
            <li class="nav-item">
-            <a href="{{ route('home')}}" class="nav-link {{ setMenuActive('home') }}">
+            <a href="{{ route('dashboard')}}" class="nav-link {{ setMenuActive('home') }}">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Accueil
@@ -11,32 +11,6 @@
             </a>
           </li>
           
-          @can("gestion-actualite")
-            <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Tableau de bord
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-chart-line"></i>
-                  <p>Vue globale</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-swatchbook"></i>
-                  <p>Articles</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          @endcan
-
           @can("admin")
           <li class="nav-item {{ setMenuClass("admin.habilitations.", 'menu-open') }}" >
             <a href="#" class="nav-link">

@@ -12,11 +12,17 @@ use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
+use Livewire\WithPagination;
+
 Paginator::useBootstrap();
 
 class Utilisateurs extends Component
 {
-    
+    use WithPagination;
+
+    public $search = "";
+
     protected $paginationTheme = "bootstrap";
     
     //public $isBtnAddClicked = false; 
@@ -39,8 +45,15 @@ class Utilisateurs extends Component
     public function render()
     {
         Carbon::setLocale("fr");
+
+        $userQuery = User::query();
+
+        if($this->search != ""){
+            // dd('test');
+            $userQuery->where('nom', "LIKE", "%". $this->search ."%")->orWhere('prenom', "LIKE", "%". $this->search ."%");
+        }
         return view('livewire.utilisateurs.index', [
-            "users" => User::latest()->paginate(5) //latest() permet de recupe le dernier element ajouter
+            "users" => $userQuery->latest()->paginate(5) //latest() permet de recupe le dernier element ajouter
         ])
                 ->extends("layouts.master")
                 ->section("contenu");
@@ -142,12 +155,15 @@ class Utilisateurs extends Component
         $validationAttributes = $this->validate(); 
 
         //Ajout du password par default
-        $validationAttributes["newUser"]["password"] = "password";
+        $validationAttributes["newUser"]["password"] = Hash::make(DEFAULTPASSWORD);
         $validationAttributes["newUser"]["photo_user_id"] = "1";
 
         // Ajouter un nouvel utilisateur 
-        User::create($validationAttributes["newUser"]);
+        $user = User::create($validationAttributes["newUser"]);
 
+        $role = Role::select('id')->where('nomRole', 'utilisateur')->first(); 
+        //attach du role à l'utilisateur pendant la creation 
+        $user->roles()->attach($role);
         //vider le tableau de valeurs
         $this->newUser = []; 
 

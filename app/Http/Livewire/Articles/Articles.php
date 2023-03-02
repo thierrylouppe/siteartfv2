@@ -152,7 +152,8 @@ class Articles extends Component
 
                 Storage::delete($image_file);
             } else {
-                return redirect()->route("admin.gestionarticles.articles.index")->$this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Votre image est inférieure de 500 x 500!"]);
+                return session()->flash('message', 'Votre image est inférieure de 500 x 500!');
+                // return $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Votre image est inférieure de 500 x 500!"]);  
             }
             // $image = Image::make(public_path("storage/".$imagePath))->fit(200, 200);
             // $image->save();

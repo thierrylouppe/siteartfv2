@@ -35,16 +35,16 @@ class Dashboards extends Component
         
         $this->nbreactus = count(Article::where('status', '1')->get());
 
-        $this->nbreavis = count(Publication::all());
-        $this->nbrebulletinregulateur = count(Publication::all());
-        $this->nbreetudes = count(Publication::all( )); 
-        $this->nbreseriestatistiques = count(Publication::all());
+        $this->nbreavis = count(Publication::where('typepublication', 'avis')->where('status', '1')->get());
+        $this->nbrebulletinregulateur = count(Publication::where('typepublication', 'bulletinsduregulateur')->where('status', '1')->get());
+        $this->nbreetudes = count(Publication::where('typepublication', 'etude')->where('status', '1')->get()); 
+        $this->nbreseriestatistiques = count(Publication::where('typepublication', 'seriestatistique')->where('status', '1')->get());
         
-        $this->nbrelois = count(Reglementation::all());
-        $this->nbreinstructions = count(Reglementation::all());
-        $this->nbredecrets = count(Reglementation::all());
-        $this->nbrecirculaires = count(Reglementation::all());
-        $this->nbrearretes = count(Reglementation::all()); 
+        $this->nbrelois = count(Reglementation::where('typereglementation', 'lois')->where('status', '1')->get());
+        $this->nbreinstructions = count(Reglementation::where('typereglementation', 'instruction')->where('status', '1')->get());
+        $this->nbredecrets = count(Reglementation::where('typereglementation', 'decret')->where('status', '1')->get());
+        $this->nbrecirculaires = count(Reglementation::where('typereglementation', 'circulaire')->where('status', '1')->get());
+        $this->nbrearretes = count(Reglementation::where('typereglementation', 'arrete')->where('status', '1')->get()); 
 
         return view('livewire.dashboards.dashboards')
         ->extends("layouts.master")

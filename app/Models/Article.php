@@ -18,6 +18,17 @@ class Article extends Model
         'image',
     ];
 
+    //scopeStatus pour filtrer les articles dans les status = 1 pour en lige 
+    public function scopeArticleenligne($query)
+    {
+        return $query->where('status', 1)->orderBy('created_at', 'DESC')->paginate(6); 
+    }
+    // recuperation des 3 articles recents 
+    public function scopeRecent($query)
+    {
+        return $query->where('status', 1)->orderBy('created_at', 'DESC')->paginate(3); 
+    }
+    
     public function user(){
         return $this->belongsTo(User::class);
     }

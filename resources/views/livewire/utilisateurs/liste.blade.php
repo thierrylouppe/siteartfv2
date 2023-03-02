@@ -7,13 +7,8 @@
                 <div class="card-tools d-flex align-items-center">
                 <a class="mr-4 text-white btn btn-link d-block" wire:click.prevent='goToAddUser()'><i class="fas fa-user-plus"></i>Nouvel utilisateur</a>
                   <div class="input-group input-group-md" style="width: 250px;">
-                    <input type="text" name="table_search" class="float-right form-control" placeholder="Search">
-
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
+                    
+                    <input id="recherche" type="text" wire:model.debounce.200ms="search" name="table_search" class="float-right form-control" placeholder="Recherche">
                   </div>
                 </div>
               </div>
@@ -44,7 +39,9 @@
                       <td class="text-center"><span class="tag tag-success">{{$user->created_at->diffForHumans()}}</span></td>
                       <td class="text-center">
                         <button class="btn btn-link" wire:click='goToEditUser({{$user->id}})'><i class="far fa-edit"></i></button>
-                        <button class="btn btn-link" wire:click="confirmDelete('{{$user->prenom}} {{$user->nom}}', {{$user->id}})"><i class="fa fa-trash-alt"></i></button>
+                        @can('delete-users')
+                          <button class="btn btn-link" wire:click="confirmDelete('{{$user->prenom}} {{$user->nom}}', {{$user->id}})"><i class="fa fa-trash-alt"></i></button>
+                        @endcan
                       </td>
                     </tr> 
                     @endforeach

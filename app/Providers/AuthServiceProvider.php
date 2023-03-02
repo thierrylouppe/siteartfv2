@@ -31,7 +31,7 @@ class AuthServiceProvider extends ServiceProvider
 
         //Ajout des Gates
         Gate::define("admin", function(User $user){
-            return $user->hasRole("admin");
+            return $user->hasAnyRole(['admin','supadmin']);
         });
 
         Gate::define("agent", function(User $user){
@@ -41,7 +41,7 @@ class AuthServiceProvider extends ServiceProvider
 
         //donc les droits aux auteurs et admin de naviger sur les differentes pages 
         Gate::define('manage-users', function (User $user) {
-            return $user->hasAnyRole(['admin']);
+            return $user->hasAnyRole(['admin','supadmin']);
         });
         /*Gate::define('manage-users', function(User $user){
             return $user->hasAnyRole(['auteur', 'admin']);
@@ -81,12 +81,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('gestion-publication', function (User $user) {
             return $user->isAdmin();
         });
-
-
-
-
-
-
 
         Gate::define('isUtilisateur', function (User $user) {
             return $user->isUtilisateur();

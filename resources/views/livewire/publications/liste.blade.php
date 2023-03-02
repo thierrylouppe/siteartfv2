@@ -84,11 +84,19 @@
                                         @endif
                                         <td class="text-center">
                                             @if ($publication->status == 0)
+                                            @can('editer')
                                                 <button class="btn btn-link" title="Editer" data-toggle="modal" data-target="#modal-info" wire:click.prevent="edit({{$publication->id}})"><i class="fas fa-edit"></i></button>
+                                            @endcan
+                                            @can('editer') 
                                                 <button class="btn btn-link" title="Publier" wire:click.prevent='confirmePublierPublication({{$publication->id}})'><i class="fas fa-arrow-up"></i></button>
+                                            @endcan
+                                            @can('delete-article')
                                                 <button class="btn btn-link" title="Supprimer" wire:click.prevent='confirmDeletePublication({{$publication->id}})'><i class="far fa-trash-alt"></i></button>
+                                            @endcan
                                             @else
-                                                <button class="btn btn-link" title="Dépublier" wire:click.prevent='confirmeDepublierPublication({{$publication->id}})'><i class="fas fa-arrow-down"></i></button>
+                                                @can('depublier')
+                                                    <button class="btn btn-link" title="Dépublier" wire:click.prevent='confirmeDepublierPublication({{$publication->id}})'><i class="fas fa-arrow-down"></i></button>
+                                                @endcan
                                             @endif
                                         </td>
                                     </tr>
