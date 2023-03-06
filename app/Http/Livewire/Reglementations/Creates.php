@@ -27,7 +27,7 @@ class Creates extends Component
         $validateArr = [
             'newReglementation.titre' => 'required|max:255|unique:reglementations,titre,',
             'newReglementation.typereglementation' => 'required',
-            'fichier' => 'required|mimes:doc,docx,pdf|max:1024',
+            'fichier' => 'required|file|mimes:doc,docx,pdf|max:102400',
         ];
 
         $userId = auth()->user()->id;

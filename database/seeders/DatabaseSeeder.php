@@ -22,16 +22,44 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {   
-        PhotoUser::factory(10)->create();
-        User::factory(10)->create();
-        $this->call(FichierJointSeeder::class);
+        PhotoUser::factory(4)->create();
+        // User::factory(10)->create();
+        // $this->call(FichierJointSeeder::class);
 
-        $this->call(TypePublicationSeeder::class);
+        // $this->call(TypePublicationSeeder::class);
 
-        ImageArticle::factory(10)->create();
-        Article::factory(10)->create();
-        Publication::factory(10)->create();
-        Reglementation::factory(10)->create();
+        // ImageArticle::factory(10)->create();
+        // Article::factory(10)->create();
+        // Publication::factory(10)->create();
+        // Reglementation::factory(10)->create();
+
+        // SYSTÈME D'INFORMATION
+        \App\Models\User::factory(1)->create([
+            'nom' => "DIAOUA",
+            'prenom' => "FLORA",
+            'email' => "flora.diaoua@artf.cg",
+            'sexe' => "F",
+        ]);
+
+        // BUREAU DEVELOPPEMENT
+        \App\Models\User::factory(1)->create([
+            'nom' => "TCHICAYA",
+            'prenom' => "DUC",
+            'email' => "duc.tchicaya@artf.cg",
+            'sexe' => "M",
+        ]);
+        \App\Models\User::factory(1)->create([
+            'nom' => "LOUPPE",
+            'prenom' => "THIERRY",
+            'email' => "thierry.louppe@artf.cg",
+            'sexe' => "M",
+        ]);
+        \App\Models\User::factory(1)->create([
+            'nom' => "FOULA",
+            'prenom' => "NESTEPHIE",
+            'email' => "nestephie.foula@artf.cg",
+            'sexe' => "F",
+        ]);
 
         $this->call(RoleSeeder::class);
         $this->call(PermissionSeeder::class);
@@ -39,6 +67,6 @@ class DatabaseSeeder extends Seeder
         //Ajout des roles aux utilisateur
         User::find(1)->roles()->attach(1);
         User::find(2)->roles()->attach(2);
-        User::find(3)->roles()->attach(3);
+        User::find(3)->roles()->attach(2);
     }
 }

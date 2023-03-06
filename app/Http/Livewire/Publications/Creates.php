@@ -28,7 +28,7 @@ class Creates extends Component
         $validateArr = [
             'newPublication.titre' => 'required|max:255|unique:publications,titre,',
             'newPublication.typepublication' => 'required',
-            'fichier' => 'required|mimes:doc,docx,pdf|max:1024',
+            'fichier' => 'required|mimes:doc,docx,pdf|max:102400',
         ];
 
         $userId = auth()->user()->id;
