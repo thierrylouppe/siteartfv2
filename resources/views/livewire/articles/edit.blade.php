@@ -21,9 +21,8 @@
 
                         <div class="form-group ">
                             <label for="text" class="col-sm-6 col-form-label">Contenue de l'article</label>
-                            <div class="mb-3">
-                                <textarea name="contenue" class="textarea @error('editArticle.contenue') is-invalid @enderror"
-                                    style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"
+                            <div class="mb-3" wire:ignore>
+                                <textarea id="description" name="contenue" class="textarea"
                                     wire:model='editArticle.contenue'></textarea>
                                 @error('editArticle.contenue')
                                     <div class="invalid-feedback">
@@ -96,3 +95,24 @@
         </div>
     </div>
 </div>
+<script>
+    $('#description').summernote({
+    placeholder: 'Hello stand alone ui',
+    tabsize: 2,
+    height: 120,
+    toolbar: [
+      ['style', ['style']],
+      ['font', ['bold', 'underline', 'clear']],
+      ['color', ['color']],
+      ['para', ['ul', 'ol', 'paragraph']],
+      ['table', ['table']],
+      ['insert', ['link', 'picture', 'video']],
+      ['view', ['fullscreen', 'codeview', 'help']]
+    ],
+    callbacks: {
+            onChange: function(contents, $editable) {
+                @this.set('editArticle.contenue', contents);
+            }
+        }
+  });
+</script>

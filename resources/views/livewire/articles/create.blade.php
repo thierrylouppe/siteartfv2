@@ -22,9 +22,10 @@
 
                     <div class="form-group ">
                         <label for="text" class="col-sm-3 col-form-label">Contenue de l'article</label>
-                        <div class="mb-3">
-                            <textarea name="contenue" wire:model='newArticle.contenue' id="summernote" placeholder="Entrer le contenue" class="textarea @error('newArticle.contenue') is-invalid @enderror"
-                                style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                        <div class="mb-3" wire:ignore>
+                            <textarea  wire:model='newArticle.contenue' id="description" class="form-control"></textarea>
+                            {{-- <textarea name="contenue" wire:model='newArticle.contenue' id="summernote" placeholder="Entrer le contenue" class="textarea @error('newArticle.contenue') is-invalid @enderror"
+                                style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> --}}
                             @error('newArticle.contenue')
                                 <div class="invalid-feedback">
                                     {{ $errors->first('newArticle.contenue') }}
@@ -63,4 +64,27 @@
     </div>
 </div>
 
+@push('scripts')
+@endpush
+    <script>
+        $('#description').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ],
+        callbacks: {
+                onChange: function(contents, $editable) {
+                    @this.set('newArticle.contenue', contents);
+                }
+            }
+      });
+    </script>
 
