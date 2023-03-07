@@ -113,12 +113,13 @@ class Articles extends Component
     public function addArticle(){
         $validateArr = [
             'newArticle.titre' =>  'required|max:255|unique:articles,titre,',
-            'newArticle.contenue' => 'required',
+            'newArticle.contenue' => '',
             'image' => "required|image"
         ];
 
         $userId = auth()->user()->id;
         $validatedData = $this->validate($validateArr); 
+        // dd($validatedData);
         $image_name = ""; 
 
         if($this->image != null){
@@ -175,6 +176,7 @@ class Articles extends Component
         $this->inputFileIterator++;
         //Envoi msg succès
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Article créé avec succès!!!"]);
+        $this->goToListArticle();
     } 
     
 
@@ -198,6 +200,7 @@ class Articles extends Component
             "user_id" => $validatedData["editArticle"]["user_id"] = $userId,
         ]);
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Article mis à jour avec succès!!!"]);
+        $this->goToListArticle();
     }
 
     public function updateImage($id)

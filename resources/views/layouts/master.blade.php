@@ -8,6 +8,11 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
+    {{-- Summernote --}}
+    {{-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet"> --}}
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
 
     @livewireStyles
 
@@ -85,6 +90,9 @@
     <!-- REQUIRED SCRIPTS -->
     <script src="{{ mix('js/app.js') }}"></script>
 
+    {{-- Summernote --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     {{-- Script pour message succès --}}
     <script>
         window.addEventListener("showSuccessMessage", event=>{
@@ -112,6 +120,8 @@
     </script>
     
 
+    @stack('scripts')
+    
      @livewireScripts
 
    

@@ -13,9 +13,9 @@
       
 </div>
 
-<script>
+{{-- <script>
   document.getElementById("summernote").summernote()
-</script>
+</script> --}}
 
 <script>
     window.addEventListener("showSuccessMessage", event=>{
