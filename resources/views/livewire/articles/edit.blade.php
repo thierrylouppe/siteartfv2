@@ -24,12 +24,8 @@
                             <div class="mb-3" wire:ignore>
                                 <textarea id="description" name="contenue" class="textarea"
                                     wire:model='editArticle.contenue'></textarea>
-                                @error('editArticle.contenue')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
                             </div>
+                            <span class='text-danger'>@error('editArticle.contenue'){{ $message }}@enderror</span>
                         </div>
                         <div class="col-sm-8">
                         <div class="form-group">
@@ -97,7 +93,7 @@
 </div>
 <script>
     $('#description').summernote({
-    placeholder: 'Hello stand alone ui',
+    placeholder: "Contenue de l'article ici",
     tabsize: 2,
     height: 120,
     toolbar: [
