@@ -9,10 +9,10 @@
             <div class="card-body">
                 <div class="card-body pad">
                     <div class="form-group ">
-                        <label for="titre" class="col-sm-3 col-form-label">Titre de l'actualité</label>
+                        <label for="titre" class="col-sm-3 col-form-label ">Titre de l'actualité<abbr>*</abbr></label>
                         <input type="text" wire:model='newArticle.titre' id="titre" name="titre"
                             class="form-control @error('newArticle.titre') is-invalid @enderror" 
-                            placeholder="Entrer le titre">
+                            placeholder="Entrer le titre" required>
                         @error('newArticle.titre')
                             <div class="invalid-feedback">
                                 {{ $errors->first('newArticle.titre') }}
@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="form-group ">
-                        <label for="text" class="col-sm-3 col-form-label">Contenue de l'article</label>
+                        <label for="text" class="col-sm-3 col-form-label">Contenue de l'article<abbr>*</abbr></label>
                         <div class="mb-3" wire:ignore>
                             <textarea  wire:model='newArticle.contenue' id="description" class="form-control"></textarea>
                         </div>
@@ -32,7 +32,7 @@
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <label for="text" class="col-sm-12 col-form-label">Selectionner
-                                    l'image du slider</label>
+                                    l'image du slider<abbr>*</abbr></label>
                                 <input type='file' wire:model='image' name="image" id="ee{{$inputFileIterator}}"/>
                                 
                                 @if ($image)

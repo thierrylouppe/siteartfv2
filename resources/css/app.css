@@ -14,3 +14,13 @@
     white-space:nowrap;
     overflow:hidden;
 }
+
+.abbr {
+    position: absolute;
+    left: -1em;
+    color: red;
+  }
+
+  .intro {
+    background-color: yellow;
+  }
