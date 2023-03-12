@@ -24,14 +24,8 @@
                         <label for="text" class="col-sm-3 col-form-label">Contenue de l'article</label>
                         <div class="mb-3" wire:ignore>
                             <textarea  wire:model='newArticle.contenue' id="description" class="form-control"></textarea>
-                            {{-- <textarea name="contenue" wire:model='newArticle.contenue' id="summernote" placeholder="Entrer le contenue" class="textarea @error('newArticle.contenue') is-invalid @enderror"
-                                style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea> --}}
-                            @error('newArticle.contenue')
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('newArticle.contenue') }}
-                                </div>
-                            @enderror
                         </div>
+                        <span class='text-danger'>@error('newArticle.contenue'){{ $message }}@enderror</span>
                     </div>
 
                     <div class="row">
@@ -68,7 +62,7 @@
 @endpush
     <script>
         $('#description').summernote({
-        placeholder: 'Hello stand alone ui',
+        placeholder: "Contenue de l'article ici",
         tabsize: 2,
         height: 120,
         toolbar: [

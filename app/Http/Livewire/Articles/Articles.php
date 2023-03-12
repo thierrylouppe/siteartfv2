@@ -113,7 +113,7 @@ class Articles extends Component
     public function addArticle(){
         $validateArr = [
             'newArticle.titre' =>  'required|max:255|unique:articles,titre,',
-            'newArticle.contenue' => '',
+            'newArticle.contenue' => 'required',
             'image' => "required|image"
         ];
 
