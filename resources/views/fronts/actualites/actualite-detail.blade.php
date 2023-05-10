@@ -56,7 +56,7 @@
 					<aside class="sidebar">
 						<div class="px-3 mt-4">
 							<div class="pb-1 mb-3 input-group">
-								<input class="border-0 form-control box-shadow-none text-1 bg-color-grey" placeholder="Recherchez..." value="{{ request()->s ?? ''}}" name="s" id="s" type="text">
+								<input class="border-0 form-control box-shadow-none text-1 bg-color-grey" wire:model.debounce.200ms="search" placeholder="Recherchez..." name="s" id="s" type="text">
 								<span class="input-group-append">
 									<button type="submit" class="p-2 btn bg-color-grey text-1"><i class="m-2 fas fa-search"></i></button>
 								</span>
@@ -68,7 +68,7 @@
 						<div class="px-3 mt-4">
 							<h3 class="m-0 mb-3 text-color-secondary text-capitalize font-weight-bold text-5">Articles récents</h3>
 							<div class="pb-2 mb-1">
-								@foreach($articlesenligne as $actualite)
+								@foreach($articlerecents as $actualite)
 								<a href="#" class="mb-0 text-color-default text-uppercase text-1 d-block text-decoration-none">{{Carbon\Carbon::parse($actualite->updated_at)->diffForHumans()}}</a>
 								<a href="{{ route('actualites.actualitedetail', $actualite->slug) }}" class="{{ request()->url()==route('actualites.actualitedetail', $actualite->slug) ? 'text-color-red font-weight-bold' : '' }} text-hover-primary  text-3 d-block pb-3 line-height-4">{{ $actualite->titre }}</a>
 								@endforeach

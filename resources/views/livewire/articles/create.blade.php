@@ -9,7 +9,7 @@
             <div class="card-body">
                 <div class="card-body pad">
                     <div class="form-group ">
-                        <label for="titre" class="col-sm-3 col-form-label ">Titre de l'actualité<abbr>*</abbr></label>
+                        <label for="titre" class="col-sm-3 col-form-label ">Titre de l'actualité <abbr>*</abbr></label>
                         <input type="text" wire:model='newArticle.titre' id="titre" name="titre"
                             class="form-control @error('newArticle.titre') is-invalid @enderror" 
                             placeholder="Entrer le titre" required>

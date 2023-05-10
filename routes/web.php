@@ -27,6 +27,7 @@ use App\Http\Livewire\Publications\Creates;
 use App\Http\Livewire\Publications\Listes;
 use App\Http\Livewire\Reglementations\Creates as ReglementationsCreates;
 use App\Http\Livewire\Reglementations\Listes as ReglementationsListes;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/symlink', function () {
+    Artisan::call('storage:link');
+});
 
 /*
 |--------------------------------------------------------------------------

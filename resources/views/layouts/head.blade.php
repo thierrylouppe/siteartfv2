@@ -20,13 +20,13 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet" type="text/css">
 
 	<!-- Vendor CSS --> 
-	<link rel="stylesheet" href="{{asset('assets/css/bootstrap/css/bootstrap.min.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/css/fontawesome-free/css/all.min.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/css/animate/animate.compat.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/css/simple-line-icons/css/simple-line-icons.min.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/css/owl.carousel/assets/owl.carousel.min.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/css/owl.carousel/assets/owl.theme.default.min.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/css/magnific-popup/magnific-popup.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/vendor/animate/animate.compat.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/vendor/simple-line-icons/css/simple-line-icons.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/vendor/owl.carousel/assets/owl.carousel.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/vendor/owl.carousel/assets/owl.theme.default.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/vendor/magnific-popup/magnific-popup.min.css')}}">
 
 	<!-- Theme CSS -->
 	<link rel="stylesheet" href="{{asset('assets/css/theme.css')}}">
@@ -34,9 +34,9 @@
 	<link rel="stylesheet" href="{{asset('assets/css/theme-blog.css')}}">
 
 	<!-- Current Page CSS -->
-	<link rel="stylesheet" href="{{asset('assets/css/rs-plugin/css/settings.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/css/rs-plugin/css/layers.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/css/rs-plugin/css/navigation.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/vendor/rs-plugin/css/settings.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/vendor/rs-plugin/css/layers.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/vendor/rs-plugin/css/navigation.css')}}">
 
 	<!-- Demo CSS -->
 	<link rel="stylesheet" href="{{asset('assets/css/master.css')}}">
@@ -48,17 +48,17 @@
 	<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 
 	<!-- Head Libs -->
-	<script src="{{asset('assets/css/modernizr/modernizr.min.js')}}"></script>
+	<script src="{{asset('assets/vendor/modernizr/modernizr.min.js')}}"></script>
 
 	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-PN98NDSB7M"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PN98NDSB7M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-	gtag('config', 'G-PN98NDSB7M');
-	</script>
+  gtag('config', 'G-PN98NDSB7M');
+</script>
 
-	@livewireStyles
+
 </head>

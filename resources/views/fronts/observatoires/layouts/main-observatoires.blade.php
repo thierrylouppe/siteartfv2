@@ -12,7 +12,7 @@
 							<li class="nav-item"><a class="nav-link bg-transparent border-0 {{ request()->url()==route('observatoires.liste-etablissement-financier') ? 'active' : '' }}" href="{{ route('observatoires.liste-etablissement-financier') }}">Liste des établissements financiers</a></li>
 							<li class="nav-item"><a class="nav-link bg-transparent border-0 {{ request()->url()==route('observatoires.obtention-agrement') ? 'active' : '' }}" href="{{ route('observatoires.obtention-agrement') }}">Condition d'obtention d'un agrement</a></li>
 							@if(request()->url()==route('observatoires.obtention-agrement'))
-							<li class="nav-item"><a class="bg-transparent border-0 nav-link text-color-secondary" href="{{asset('download/test.pdf')}}" download="Documentation (ver. 2.0.1).pdf" target="_blank">Télécharger la composition du dossier de demande agrement</a></li>
+							<li class="nav-item"><a class="bg-transparent border-0 nav-link text-color-secondary" href="{{asset('download/observatoires/composition-du-dossier-de-demande-agrement.pdf')}}" download="Condition d'obtention d'un agrement.pdf" target="_blank">Télécharger la composition du dossier de demande agrement</a></li>
 							@endif
 						</ul>
 					</div>

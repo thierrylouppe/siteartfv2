@@ -10,7 +10,8 @@ use Livewire\Component;
 class Showactualites extends Component
 {
     public $article; 
-
+    public $search = "";
+    
     public function mount($slug){
         $this->article = Article::where('slug', $slug)->first();
         if ($this->article != null) {
@@ -30,8 +31,13 @@ class Showactualites extends Component
 
         $articleQuery = Article::query();
 
+        if($this->search != ""){
+            $articleQuery->where('titre', "LIKE", "%". $this->search ."%");
+        }
+
         return view('fronts.actualites.actualite-detail', [
-            "articlesenligne" => $articleQuery->where('status', 1)->latest()->paginate(6)
+            "articlesenligne" => $articleQuery->where('status', 1)->latest()->paginate(6),
+            "articlerecents" => $articleQuery->where('status', 1)->latest()->paginate(3),
         ])
         
         ->extends("fronts.layouts.master")

@@ -25,19 +25,20 @@
                 <div class="row align-items-center">
                     <div class="mb-3 col-lg-8 mb-lg-0">
                         <p class="my-1 text-color-red">
-                            Alerte Coronavirus !!!
-                            <span class="pt-0 text-color-light d-inline-block">Pour se protéger et protéger les autres respecter les gestes barrières.</span>
+                            Conditions d'obtention d'un agrément 
+                            <span class="pt-0 text-color-light d-inline-block">Il est obligatoire de souscrire à une demande d'agrément pour se conformer aux exigences de la création d'une société de transfert de fonds.</span>
                         </p>
                     </div>
                     <div class="text-left col-lg-4 text-lg-right">
-                        <a href="https://news.google.com/covid19/map?hl=fr&mid=%2Fm%2F01rxw&gl=FR&ceid=FR%3Afr" target="_blank" class="btn btn-primary custom-btn-style-1 text-uppercase font-weight-semibold">En Savoir Plus</a>
+                        <a href="{{ route('observatoires.obtention-agrement') }}" target="_blank" class="btn btn-primary custom-btn-style-1 text-uppercase font-weight-semibold">En Savoir Plus</a>
+                        {{-- <a href="{{ route('observatoires.obtention-agrement') }}" target="_blank" class="btn btn-primary custom-btn-style-1 text-uppercase font-weight-semibold">En Savoir Plus</a> --}}
                     </div>
                 </div>
             </div>
         </div><!-- ======= End Section Intro ======= -->
 
         <!-- ======= Message Directeur ======= -->
-        <div class="container-fluid">
+        {{-- <div class="container-fluid">
             <div class="row">
                 <div class="p-0 col-lg-6">
                     <img src="{{ asset('assets/img/parallax/parallax-1.png')}}" class="img-fluid" alt="" style="width: 100%; height: 100%; object-fit: scale-down; background-position: center;">
@@ -57,7 +58,8 @@
                     </section>
                 </div>
             </div>
-        </div><!-- ======= End Message Directeur ======= -->
+        </div> --}}
+        <!-- ======= End Message Directeur ======= -->
 
         <!-- ======= Acès ciblés ======= -->
         <section class="m-0 section section-no-border custom-section-spacement-1 bg-color-tertiary">

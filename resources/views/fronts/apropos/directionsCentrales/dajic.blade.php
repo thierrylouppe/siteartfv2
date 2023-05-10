@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('fronts.layouts.master')
 @extends('fronts.apropos.layouts.main-directions-centrales')
 
 @section('page-header')
@@ -29,7 +29,7 @@
 			<div class="card-body p-0">
 				<h2 class="font-weight-bold mt-2 text-uppercase">Direction des affaires juridiques, des investigations et de la coopération </h2>
 				<hr class="my-3 "> </br>
-				<div class="row">
+				{{-- <div class="row">
 					<div class="col-md-7 order-3">
 						<div class="overflow-hidden">
 							<h2 class="text-color-dark font-weight-bold text-8 mb-0 pt-0 mt-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="300">Joseph MAHOUNGOU KANDZA</h2>
@@ -53,7 +53,7 @@
 					<div class="col-md-5 order-md-2 mb-4 mb-lg-0 appear-animation" data-appear-animation="fadeInRightShorter">
 						<img src="{{ asset('assets/img/directeurs/dajic.jpg')}}" class="img-fluid" alt="" style="width: 230px; height: 230px;">
 					</div>
-				</div>
+				</div> --}}
 				<div class="card-body p-0">
 					<h2 class="font-weight-bold mt-5">Son organisation</h2> </br>
 

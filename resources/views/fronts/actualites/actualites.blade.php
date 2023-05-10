@@ -74,7 +74,9 @@
 										<div class="post-content">
 											<h2 class="mt-3 mb-2 font-weight-semibold text-5 line-height-6"><a href="{{ route('actualites.actualitedetail', $actualite->slug) }}">{{$actualite->titre }}</a></h2>
 											{{-- <p class="bg-danger " style="color:Red; width: 100%; height: 60px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; backgroun:reed;">{{ $actualite->contenue }}</p> --}}
-											<p style="width: 100%; height: 60px; text-overflow: ellipsis; overflow: hidden;">{{ $actualite->contenue }}</p>
+											{{-- <p style="width: 100%; height: 60px; text-overflow: ellipsis; overflow: hidden;">{!! $actualite->contenue !!}</p> --}}
+											{{-- <p>{!! $article->contenue !!}</p> --}}
+											{{-- <p style="width: 100%; height: 60px; text-overflow: ellipsis; overflow: hidden;">{{ $actualite->contenue }}</p> --}}
 
 											<div class="post-meta">
 												<span><i class="far fa-user"></i> Par <a href="#">Artf</a> </span>

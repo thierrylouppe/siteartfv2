@@ -34,7 +34,7 @@
 									<h4 class="font-weight-semibold text-uppercase text-center  mb-6">Agence de pointe-noire</h4>
 									<p>
 									<h4 class="met_bold_one" style="display:inline;"><span><i class="icon-map icons"></i></span> Adresse</h4> : 16, Av Raymond paillet, Pointe-Noire,<br />République du Congo<br /><br />
-									<h4 class="met_bold_one" style="display:inline;color:#000;"><strong>Directrice </strong></h4> : Yolande QUENUM
+									<h4 class="met_bold_one" style="display:inline;color:#000;"><strong>Directrice </strong></h4> : Lusika NGOUONIMBA
 									<br />
 									<h4 class="met_bold_one" style="display:inline;"><span><i class="icon-envelope-open icons"></i></span> </h4> <a href="mailto:departement.pointe-noire@artf.cg" style="color:#b84232;">departement.pointe-noire@artf.cg</a>
 									</br>

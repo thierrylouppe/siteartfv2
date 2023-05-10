@@ -31,26 +31,26 @@
 				<div class="row">
 					<div class="order-3 col-md-7">
 						<div class="overflow-hidden">
-							<h2 class="pt-0 mt-0 mb-0 text-color-dark font-weight-bold text-8 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="300">Philippe NGOMA</h2>
+							<h2 class="pt-0 mt-0 mb-0 text-color-dark font-weight-bold text-8 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="300">Basile Jean Claude BAZEBI</h2>
 						</div>
 						<div class="mb-3 overflow-hidden">
-							<p class="mb-0 font-weight-bold text-primary text-uppercase appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="500">Directeur Général Par Intérim</p>
+							<p class="mb-0 font-weight-bold text-primary text-uppercase appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="500">Directeur Général</p>
 						</div>
 						<p class="pb-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="800"> </p>
-						<hr class="my-4 solid appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="900">
+						{{-- <hr class="my-4 solid appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="900"> --}}
 						<div class="row align-items-center appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1000">
-							<div class="my-4 col-sm-6 text-lg-right my-lg-0">
+							{{-- <div class="my-4 col-sm-6 text-lg-right my-lg-0">
 								<strong class="mr-3 text-uppercase text-1 text-red">suivez-moi</strong>
 								<ul class="social-icons float-lg-right">
 									<li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
 									<li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
 									<li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fab fa-linkedin-in"></i></a></li>
 								</ul>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 					<div class="mb-4 col-md-5 order-md-2 mb-lg-0 appear-animation" data-appear-animation="fadeInRightShorter">
-						<img src="{{ asset('assets/img/directeurs/motdgi.png')}}" class="img-fluid" alt="" style="width: 230px; height: 230px;">
+						{{-- <img src="{{ asset('assets/img/directeurs/motdgi.png')}}" class="img-fluid" alt="" style="width: 230px; height: 230px;"> --}}
 					</div>
 				</div>
 				<h2 class="mt-5 font-weight-bold">Ses missions</h2> </br>
