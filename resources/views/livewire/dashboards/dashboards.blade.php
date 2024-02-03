@@ -303,6 +303,7 @@
 
             @can('isUtilisateur')
             <h1>Ici sera le dashboard de l'utilisateur simple</h1>
+            @include("livewire.dashboards.utilisateur")
             @endcan
 
             @can('')

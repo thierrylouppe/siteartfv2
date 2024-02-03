@@ -9,6 +9,8 @@ use App\Http\Livewire\Chiffrecles\Listes as ChiffreclesListes;
 use App\Http\Livewire\Dashboards\Dashboards;
 use App\Http\Livewire\Front\Actualites\Actualites;
 use App\Http\Livewire\Front\Actualites\Showactualites;
+use App\Http\Livewire\Front\Blog\Blog;
+use App\Http\Livewire\Front\Blog\Detail;
 use App\Http\Livewire\Front\Contacts\Contacts;
 use App\Http\Livewire\Front\Home;
 use App\Http\Livewire\Front\Publications\Avis;
@@ -178,6 +180,17 @@ Route::group([
     Route::get("articles/", Actualites::class)->name("actualites");
     Route::get("article/{slug}", Showactualites::class )->name("actualitedetail");
     Route::get("/recherche", )->name("actualites.search"); 
+});
+
+/**actualites */
+Route::group([
+    "prefix" => "blog", 
+    'as' => 'blog.'
+], function(){
+    Route::get("articles/", Blog::class)->name("liste");
+    Route::get("articles/detail", Detail::class)->name("detail");
+    // Route::get("article/{slug}", Showactualites::class )->name("detail");
+    // Route::get("/recherche", )->name("actualites.search"); 
 });
 
 //Route contact 
