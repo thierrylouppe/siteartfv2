@@ -14,8 +14,8 @@ class Article extends Model
         'contenue',
         'slug',
         'status',
-        'user_id',
-        'image',
+        'author',
+        'cover_image',
     ];
 
     //scopeStatus pour filtrer les articles dans les status = 1 pour en lige 
@@ -30,6 +30,14 @@ class Article extends Model
     }
     
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'author');
+    }
+
+    /**
+     * Relation avec les commentaires (un article peut avoir plusieurs commentaires)
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

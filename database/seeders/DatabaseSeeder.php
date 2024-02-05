@@ -63,6 +63,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RoleSeeder::class);
         $this->call(PermissionSeeder::class);
+        $this->call(CategorySeeder::class);
 
         //Ajout des roles aux utilisateur
         User::find(1)->roles()->attach(1);
