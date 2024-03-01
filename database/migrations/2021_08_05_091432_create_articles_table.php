@@ -18,15 +18,14 @@ class CreateArticlesTable extends Migration
             $table->string("titre");
             $table->text("contenue");
             $table->string("slug");
-            $table->string("link_video");
+            $table->string("link_video")->nullable();
             $table->integer('status')->default("0"); 
             $table->foreignId('author')->constrained('users')->onDelete('cascade');
-            $table->enum('type_publication', ['blog', 'site']);
-            $table->enum('support_contenu', ['video', 'image']);
-            $table->string('cover_image')->nullable(); // Image de couverture
+            $table->json('type_publication')->nullable();
+            $table->enum('support_contenu', ['video', 'image'])->nullable();
+            $table->string('cover_image'); 
             $table->json('images')->nullable(); // Pour stocker plusieurs images, utilisez le type JSON
-            $table->foreignId('category')->constrained('categories')->onDelete('cascade');
-            //$table->foreignId('image_article_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category')->constrained('categories')->references('id')->on('categories')->onDelete('cascade')->default("1");
             $table->timestamps();
         });
     }

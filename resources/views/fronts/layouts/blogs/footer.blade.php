@@ -55,7 +55,12 @@
 
 <!-- Theme Initialization Files -->
 <script src="{{asset('assets/js/theme.init.js')}}"></script>
+<!-- Theme Custom -->
+<script src="{{asset('assets/js/detailblog.js')}}"></script>
 
+<!-- Ajoutez le script JavaScript de Facebook juste avant la balise de fermeture du corps -->
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v13.0"
+  nonce="YOUR_NONCE_VALUE"></script>
 
 
 

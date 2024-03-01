@@ -42,13 +42,19 @@
 	<link rel="stylesheet" href="{{asset('assets/css/master.css')}}">
 
 	<!-- Skin CSS -->
-	<link rel="stylesheet" href="{{asset('assets/css/skins/skin-master.css')}}">
+	{{-- <link rel="stylesheet" href="{{asset('assets/css/skins/skin-master.css')}}"> --}}
 
 	<!-- Theme Custom CSS -->
 	<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 
+	<link rel="stylesheet" href="{{asset('assets/css/demo-photography-3.css')}}">
+
+	
+	<link rel="stylesheet" href="{{asset('assets/css/skins/skin-photography.css')}}">
+
+	
 	<!-- Head Libs -->
-	<script src="{{asset('assets/css/modernizr/modernizr.min.js')}}"></script>
+	{{-- <script src="{{asset('assets/css/modernizr/modernizr.min.js')}}"></script> --}}
 
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-PN98NDSB7M"></script>

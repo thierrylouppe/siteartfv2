@@ -115,6 +115,8 @@
 
 <!--(remove-empty-lines-end)-->
 <!--  Components and Settings -->
+{{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+<script src="{{asset('assets/js/custom.js')}}"></script>
 <script src="{{asset('assets/js/theme.js')}}"></script>
 
 <!-- Current Page Vendor and Views -->
@@ -128,10 +130,10 @@
 <script src="{{asset('assets/js/slider.js')}}"></script>
 
 <!-- Theme Custom -->
-<script src="{{asset('assets/js/custom.js')}}"></script>
 
 <!-- Theme Initialization Files -->
 <script src="{{asset('assets/js/theme.init.js')}}"></script>
+
 
 
 

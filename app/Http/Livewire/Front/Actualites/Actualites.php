@@ -27,7 +27,7 @@ class Actualites extends Component
 
         return view('fronts.actualites.actualites', [
             "nbreactualites" => count(Article::all()),
-            "articlesenligne" => $articleQuery->where('status', 1)->latest()->paginate(4),
+            "articlesenligne" => $articleQuery->where('status', 1)->with('categori')->latest()->paginate(4),
             "articlerecents" => Article::where('status', 1)->latest()->paginate(3),
         ])
             ->extends("fronts.layouts.master")

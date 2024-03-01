@@ -41,7 +41,8 @@ class Profilusers extends Component
         User::find($this->editUser["id"])->update($validationAttributes['editUser']);
 
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Mis à jour avec succès!!!"]);
-        return redirect()->route('profils.profils');
+        // return redirect()->route('profils.profils');
+        return redirect()->back();
         
     }
 

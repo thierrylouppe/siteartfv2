@@ -11,6 +11,7 @@ use App\Http\Livewire\Front\Actualites\Actualites;
 use App\Http\Livewire\Front\Actualites\Showactualites;
 use App\Http\Livewire\Front\Blog\Blog;
 use App\Http\Livewire\Front\Blog\Detail;
+use App\Http\Livewire\Front\Blog\Profilusers\Profilmanagers as BlogProfilmanagers;
 use App\Http\Livewire\Front\Contacts\Contacts;
 use App\Http\Livewire\Front\Home;
 use App\Http\Livewire\Front\Publications\Avis;
@@ -43,6 +44,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/symlink', function () {
     Artisan::call('storage:link');
 });
@@ -61,9 +63,9 @@ Route::get('/', Home::class)->name('home');
 
 /**route onglet apropos */
 Route::group([
-    "prefix" => "apropos", 
+    "prefix" => "apropos",
     'as' => 'apropos.'
-], function(){
+], function () {
     Route::get('/mot-du-dg', function () {
         return view('fronts.apropos.mot-du-dg');
     })->name('mot-du-dg');
@@ -112,41 +114,41 @@ Route::group([
 
 /**route onglet reglementation */
 Route::group([
-    "prefix" => "reglementations", 
+    "prefix" => "reglementations",
     'as' => 'reglementations.'
-], function(){
+], function () {
     Route::get("/lois", function () {
         return view('fronts.reglementations.lois');
     })->name("lois");
 
-    Route::get("/decret", )->name("decret");
+    Route::get("/decret",)->name("decret");
 
-    Route::get("/arrete", )->name("arrete");
+    Route::get("/arrete",)->name("arrete");
 
-    Route::get("/instructions", )->name("instructions");
+    Route::get("/instructions",)->name("instructions");
 
-    Route::get("/circulaires", )->name("circulaires");
+    Route::get("/circulaires",)->name("circulaires");
 });
 
 /**route onglet observatoires */
 Route::group([
-    "prefix" => "observatoires", 
+    "prefix" => "observatoires",
     'as' => 'observatoires.'
-], function(){
+], function () {
     Route::get('/liste-etablissement-financier', function () {
         return view('fronts.observatoires.liste-etablissement-financier');
     })->name('liste-etablissement-financier');
 
     Route::get('/obtention-agrement', function () {
         return view('fronts.observatoires.obtention-agrement');
-    })->name('obtention-agrement'); 
+    })->name('obtention-agrement');
 });
 
 /**route onglet publications */
 Route::group([
-    "prefix" => "publications", 
+    "prefix" => "publications",
     'as' => 'publications.'
-], function(){
+], function () {
     Route::get('/series-statistiques', Seriestatistiques::class)->name('series-statistiques');
 
     Route::get('/avis', Avis::class)->name('avis');
@@ -158,9 +160,9 @@ Route::group([
 
 /**route onglet reglementation */
 Route::group([
-    "prefix" => "reglementations", 
+    "prefix" => "reglementations",
     'as' => 'reglementations.'
-], function(){
+], function () {
     Route::get('/lois', Lois::class)->name('lois');
 
     Route::get('/decrets', Decrets::class)->name('decrets');
@@ -168,34 +170,40 @@ Route::group([
     Route::get("/arretes", Arretes::class)->name("arretes");
 
     Route::get("/circulaires", Circulaires::class)->name("circulaires");
-    
+
     Route::get("/instructions", Instructions::class)->name("instructions");
 });
 
 /**actualites */
 Route::group([
-    "prefix" => "actualites", 
+    "prefix" => "actualites",
     'as' => 'actualites.'
-], function(){
+], function () {
     Route::get("articles/", Actualites::class)->name("actualites");
-    Route::get("article/{slug}", Showactualites::class )->name("actualitedetail");
-    Route::get("/recherche", )->name("actualites.search"); 
+    Route::get("article/{slug}", Showactualites::class)->name("actualitedetail");
+    Route::get("/recherche",)->name("actualites.search");
 });
 
 /**actualites */
 Route::group([
-    "prefix" => "blog", 
-    'as' => 'blog.'
-], function(){
-    Route::get("articles/", Blog::class)->name("liste");
-    Route::get("articles/detail", Detail::class)->name("detail");
-    // Route::get("article/{slug}", Showactualites::class )->name("detail");
-    // Route::get("/recherche", )->name("actualites.search"); 
+    "middleware" => ["auth"],
+], function () {
+
+    Route::group([
+        "prefix" => "blog",
+        'as' => 'blog.'
+    ], function () {
+        Route::get("articles/", Blog::class)->name("liste");
+        Route::get("articles/{slug}", Detail::class)->name("detail");
+        // Route::get("/recherche", )->name("actualites.search"); 
+        Route::get("/change-password", BlogProfilmanagers::class)->name("changepassword");
+        Route::get("/profils", BlogProfilmanagers::class)->name("profils");
+    });
 });
 
 //Route contact 
 Route::get('/contact', Contacts::class)->name('contact');
-Route::post('/contact', )->name('contact.store');
+Route::post('/contact',)->name('contact.store');
 
 /*
 |--------------------------------------------------------------------------
@@ -207,11 +215,11 @@ Route::middleware(['auth'])->get("/dashboard", Dashboards::class)->name("dashboa
 // Route::middleware(['auth'])->get("/change-password", Changepassword::class)->name("changepassword");
 Route::group([
     "middleware" => ["auth"],
-], function(){
+], function () {
     Route::group([
-        "prefix" => "profils", 
+        "prefix" => "profils",
         'as' => 'profils.'
-    ], function(){
+    ], function () {
         Route::get("/change-password", Profilmanagers::class)->name("changepassword");
         Route::get("/profils", Profilmanagers::class)->name("profils");
     });
@@ -220,14 +228,14 @@ Route::group([
 Route::group([
     "middleware" => ["auth", 'can:admin'],
     'as' => 'admin.'
-], function(){
+], function () {
 
     //Route Dashboard 
     /*Route gestion users*/
     Route::group([
-        "prefix" => "habilitations", 
+        "prefix" => "habilitations",
         'as' => 'habilitations.'
-    ], function(){
+    ], function () {
         // hold approch:Route::get("/utilisateurs", [UserController::class, "index"])->name('users.index');
         Route::middleware('can:manage-users')->get("/utilisateurs", Utilisateurs::class)->name('users.index');
     });
@@ -236,41 +244,41 @@ Route::group([
 Route::group([
     "middleware" => ["auth", 'can:gestion-actualite'],
     'as' => 'admin.'
-], function(){
+], function () {
 
     //Route Dashboard 
     /*Route gestion articles*/
     Route::group([
-        "prefix" => "gestionarticles", 
+        "prefix" => "gestionarticles",
         'as' => 'gestionarticles.'
-    ], function(){
+    ], function () {
         Route::get("/gestionarticles", Articles::class)->name('articles.index');
         Route::get("/aperçu/{slug}", Show::class)->name('articles.show');
     });
 
     /*Route gestion publications*/
     Route::group([
-        "prefix" => "gestionpublications", 
+        "prefix" => "gestionpublications",
         'as' => 'gestionpublications.'
-    ], function(){
+    ], function () {
         Route::get("/liste-publications", Listes::class)->name('publications.index');
         Route::get("/creation-publications", Creates::class)->name('publications.create');
     });
 
     /*Route gestion reglementations*/
     Route::group([
-        "prefix" => "gestionreglementations", 
+        "prefix" => "gestionreglementations",
         'as' => 'gestionreglementations.'
-    ], function(){
+    ], function () {
         Route::get("/liste-reglementations", ReglementationsListes::class)->name('reglementations.index');
         Route::get("/creation-reglementations", ReglementationsCreates::class)->name('reglementations.create');
     });
 
     /*Route gestion chiffres cles*/
     Route::group([
-        "prefix" => "gestionchiffrecles", 
+        "prefix" => "gestionchiffrecles",
         'as' => 'gestionchiffrecles.'
-    ], function(){
+    ], function () {
         Route::get("/liste-chiffrecles", ChiffreclesListes::class)->name('chiffrecles.index');
         Route::get("/creation-chiffrecles", ChiffreclesCreates::class)->name('chiffrecles.create');
     });

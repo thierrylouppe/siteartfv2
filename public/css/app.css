@@ -56512,3 +56512,12 @@ a.text-muted:hover {
   .intro {
     background-color: yellow;
   }
+
+  .required:after {
+    content: "*";
+    position: relative;
+    font-size: inherit;
+    color: red;
+    padding-right: 0.25rem;
+    font-weight: bold;
+  }

@@ -9,12 +9,12 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['content', 'author', 'parent_id'];
+    protected $fillable = ['content', 'author', 'parent_id', 'article_id'];
 
     /**
      * Relation avec l'utilisateur (un commentaire appartient à un utilisateur)
      */
-    public function user()
+    public function auteur()
     {
         return $this->belongsTo(User::class, 'author');
     }
@@ -24,7 +24,17 @@ class Comment extends Model
      */
     public function replies()
     {
-        return $this->hasMany(Comment::class, 'parent_id');
+        return $this->hasMany(Comment::class, 'parent_id', 'id');
+    }
+
+    public function repliesRecursive()
+    {
+        return $this->hasMany(Comment::class, 'parent_id')->with('repliesRecursive');
+    }
+
+    public function replies_recursive()
+    {
+        return $this->hasMany(Comment::class, 'parent_id', 'id')->with('replies_recursive');
     }
 
     /**
