@@ -78,4 +78,19 @@ function currentRouteContains(\Illuminate\Support\Collection $routes): bool{
     return $routes->contains(request()->route()->getName());
 }
 
+if (!function_exists('getCopyrightYears')) 
+{
+    function getCopyrightYears()
+    {
+        $currentYear = date('Y');
+        $startYear = 2022;
+
+        if ($currentYear > $startYear) {
+            return $currentYear;
+        } else {
+            return $startYear;
+        }
+    }
+}
+
 
