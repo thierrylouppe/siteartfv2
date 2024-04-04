@@ -356,6 +356,12 @@
 													<td>Avenue de la paix - Arret Batéké</td>
 													<td class="center">Brazzaville</td>
 												</tr>
+												<tr class="gradeU">
+													<td class="text-red">39</td>
+													<td>PRESTIG</td>
+													<td>04 rue mbaka - Poto-Poto</td>
+													<td class="center">Brazzaville</td>
+												</tr>
 											</tbody>
 										</table>
 									</div>
