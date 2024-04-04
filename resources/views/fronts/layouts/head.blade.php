@@ -3,12 +3,25 @@
 	<!-- Basic -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="category" content="Catégorie 1, Catégorie 2, Catégorie 3">
 
 	<title>AGENCE DE REGULATION DES TRANSFERTS DE FONDS</title>
 
 	<meta name="keywords" content="ARTF Agence de regulation des transferts de fonds" />
 	<meta name="description" content="Site officiel de l'Agence de regulation des transferts de fonds du Congo Brazzaville.">
 	<meta name="author" content="ARTF">
+
+	{{-- Sécurité Business --}}
+	{{-- Cette balise permet de définir une politique de sécurité des contenus qui autorise uniquement le chargement de ressources provenant du même domaine ('self') et de sources sécurisées en HTTPS --}}
+	<meta name="category" content="Business">
+
+	<meta http-equiv="X-Content-Type-Options" content="nosniff">
+	<meta name="referrer" content="no-referrer">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	<meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://artf.cg">
+
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="{{ asset('assets/img/favicon.png')}}" type="image/x-icon" />
