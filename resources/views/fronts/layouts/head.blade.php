@@ -20,7 +20,11 @@
 	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
 
-	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://artf.cg">
+	{{-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' http://127.0.0.1:8000"> --}}
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+
+
+
 
 
 	<!-- Favicon -->

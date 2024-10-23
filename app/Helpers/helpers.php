@@ -93,4 +93,6 @@ if (!function_exists('getCopyrightYears'))
     }
 }
 
+$nonce = Str::random(16);
+
 
