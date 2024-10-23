@@ -190,10 +190,10 @@ Route::post('/contact', )->name('contact.store');
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['auth'])->get("/dashboard", Dashboards::class)->name("dashboard");
+Route::middleware(['auth', 'throttle:60,1'])->get("/dashboard", Dashboards::class)->name("dashboard");
 // Route::middleware(['auth'])->get("/change-password", Changepassword::class)->name("changepassword");
 Route::group([
-    "middleware" => ["auth"],
+    "middleware" => ["auth", 'throttle:60,1'],
 ], function(){
     Route::group([
         "prefix" => "profils", 
@@ -205,7 +205,7 @@ Route::group([
 });
 
 Route::group([
-    "middleware" => ["auth", 'can:admin'],
+    "middleware" => ["auth", 'can:admin', 'throttle:60,1'],
     'as' => 'admin.'
 ], function(){
 
@@ -221,7 +221,7 @@ Route::group([
 });
 
 Route::group([
-    "middleware" => ["auth", 'can:gestion-actualite'],
+    "middleware" => ["auth", 'can:gestion-actualite', 'throttle:60,1'],
     'as' => 'admin.'
 ], function(){
 
