@@ -10,18 +10,22 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "axios": "^0.21",
-        "bootstrap": "^4.6.0",
+        "axios": "^1.7.7",
+        "bootstrap": "^3.4.1",
+        "husky": "^9.1.6",
         "jquery": "^3.6",
-        "laravel-mix": "^6.0.6",
+        "laravel-mix": "^6.0.3",
         "lodash": "^4.17.19",
         "popper.js": "^1.16.1",
         "postcss": "^8.1.14",
-        "resolve-url-loader": "^4.0.0",
+        "resolve-url-loader": "^5.0.0",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
-        "admin-lte": "^3.1.0"
+        "@fortawesome/fontawesome-free": "^6.6.0",
+        "admin-lte": "^3.1.0",
+        "daterangepicker": "^3.1.0",
+        "sweetalert2": "^11.6.13"
     }
 }
